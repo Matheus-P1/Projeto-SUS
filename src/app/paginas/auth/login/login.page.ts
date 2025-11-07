@@ -13,6 +13,7 @@ import { API_BASE_URL } from 'src/app/shared/api.url';
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +25,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       usuario: ['', [Validators.required]],
-      senha: ['', [Validators.required]],
+      senha: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -39,16 +40,18 @@ export class LoginPage implements OnInit {
 
     const body = { email: usuario, password: senha };
 
+    this.isLoading = true;
+
     this.http.post<any>(url, body).subscribe({
       next: (response) => {
-        console.log('Login bem-sucedido', response);
+        this.isLoading = false;
 
         localStorage.setItem('token', response.access_token);
 
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.error('Erro no login', err);
+        this.isLoading = false;
         this.presentarToast(
           'Email ou senha inválidos. Tente novamente.',
           'danger'

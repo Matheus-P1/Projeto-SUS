@@ -32,6 +32,7 @@ export const senhasIguaisValidator: ValidatorFn = (
 })
 export class CadastroPage implements OnInit {
   cadastroForm!: FormGroup;
+  isLoading = false;
 
   constructor(
     private location: Location,
@@ -64,7 +65,6 @@ export class CadastroPage implements OnInit {
   }
 
   fazerCadastro() {
-    console.log(this.cadastroForm.value);
     if (this.cadastroForm.invalid) {
       if (
         this.cadastroForm.get('nome')?.hasError('required') &&
@@ -144,17 +144,18 @@ export class CadastroPage implements OnInit {
         .split('T')[0],
     };
 
-    console.log('Corpo da requisição:', corpoDaRequisicao);
-
     const url = API_BASE_URL + '/auth/register';
+
+    this.isLoading = true;
 
     this.http.post(url, corpoDaRequisicao).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.presentarToast('Cadastro realizado com sucesso!', 'success');
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Erro no cadastro', err);
+        this.isLoading = false;
         const mensagem =
           err.error?.message || 'Erro ao realizar cadastro. Tente novamente.';
         this.presentarToast(mensagem, 'danger');

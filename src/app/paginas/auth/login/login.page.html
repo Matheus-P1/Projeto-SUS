@@ -31,23 +31,16 @@
           type="submit"
           expand="block"
           class="login-button"
-          [disabled]="loginForm.invalid"
-          >Entrar</ion-button
+          [disabled]="loginForm.invalid || isLoading"
         >
+          <span *ngIf="!isLoading">Entrar</span>
+          <ion-spinner *ngIf="isLoading"></ion-spinner
+        ></ion-button>
 
         <p class="signup-text">
           Não tem conta?
           <a routerLink="/cadastro" class="signup-link">Cadastre-se</a>
         </p>
-
-        <!-- <div class="social-login">
-          <p>entrar com</p>
-          <div class="social-icons">
-            <ion-icon name="logo-google"></ion-icon>
-            <ion-icon name="logo-facebook"></ion-icon>
-            <ion-icon name="logo-apple"></ion-icon>
-          </div>
-        </div> -->
       </form>
     </div>
   </div>

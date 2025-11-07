@@ -88,8 +88,14 @@
         </div>
       </div>
 
-      <ion-button type="submit" expand="block" class="register-button">
-        Cadastrar
+      <ion-button
+        type="submit"
+        expand="block"
+        class="register-button"
+        [disabled]="cadastroForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading">Cadastrar</span>
+        <ion-spinner *ngIf="isLoading"></ion-spinner>
       </ion-button>
     </form>
   </div>
