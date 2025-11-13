@@ -63,10 +63,10 @@ export const routes: Routes = [
   },
   {
     path: 'agendar-consulta',
-    loadComponent: () =>
-      import('./paginas/servicos/agendar-consulta/agendar-consulta.page').then(
-        (m) => m.AgendarConsultaPage
-      ),
+    loadChildren: () =>
+      import(
+        './paginas/servicos/agendar-consulta/agendar-consulta.module'
+      ).then((m) => m.AgendarConsultaPageModule),
     canActivate: [authGuard],
   },
   {

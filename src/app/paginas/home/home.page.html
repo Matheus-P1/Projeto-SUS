@@ -26,6 +26,7 @@
             <ion-card
               class="service-card-home"
               button
+              [disabled]="item.disabled"
               (click)="onServiceClick(item.id)"
             >
               <div class="card-content-container">

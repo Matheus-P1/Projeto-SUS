@@ -8,37 +8,81 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content-padding">
-    <h3 class="page-title">AGENDAR CONSULTA</h3>
+  <div
+    *ngIf="isLoading"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    "
+  >
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="content-padding" *ngIf="!isLoading">
+    <h3 class="page-title">Busque Pelo profissional e especialidade</h3>
 
     <ion-card class="search-card">
       <ion-card-content>
         <ion-label>Especialidade:</ion-label>
-        <ion-searchbar placeholder="Buscar" class="custom-searchbar" [(ngModel)]="especialidade"></ion-searchbar>
+        <ion-searchbar
+          placeholder="Buscar"
+          class="custom-searchbar"
+          [(ngModel)]="especialidade"
+          (ionInput)="onFilterChange()"
+        ></ion-searchbar>
       </ion-card-content>
     </ion-card>
 
     <ion-card class="search-card">
       <ion-card-content>
         <ion-label>Nome do Profissional:</ion-label>
-        <ion-searchbar placeholder="Buscar" class="custom-searchbar" [(ngModel)]="profissional"></ion-searchbar>
+        <ion-searchbar
+          placeholder="Buscar"
+          class="custom-searchbar"
+          [(ngModel)]="profissional"
+          (ionInput)="onFilterChange()"
+        ></ion-searchbar>
       </ion-card-content>
     </ion-card>
+    <div
+      *ngIf="medicosParaRenderizar.length === 0"
+      style="padding: 16px; text-align: center; color: var(--ion-color-medium)"
+    >
+      Nenhum profissional encontrado.
+    </div>
 
-    <ion-footer class="ion-no-border">
-      <ion-toolbar>
-        <ion-button class="search-button" expand="full" (click)="buscar()">Buscar</ion-button>
-      </ion-toolbar>
-    </ion-footer>
+    <div class="results-list" *ngIf="medicosParaRenderizar.length > 0">
+      <app-doctor-card
+        *ngFor="let medico of medicosParaRenderizar"
+        [name]="medico.name"
+        [specialty]="medico.specialty"
+        [crm]="medico.crm"
+        [availability]="medico.availability"
+        [healthUnit]="medico.healthUnit"
+        [selectedSlot]="selectedHorario"
+        (slotSelected)="onHorarioSelecionado(medico, $event)"
+      >
+      </app-doctor-card>
+    </div>
+  </div>
+</ion-content>
 
-  <ion-list *ngIf="resultados.length > 0">
-  <ion-item *ngFor="let consulta of resultados">
-    <ion-label>
-      <h2>{{ consulta.profissional }}</h2>
-      <p>{{ consulta.especialidade }} - {{ consulta.data }} às {{ consulta.horario }}</p>
-    </ion-label>
-    <ion-button slot="end" color="primary" (click)="agendar(consulta)">
-      Agendar
+<ion-footer class="ion-no-border" *ngIf="!isLoading">
+  <ion-toolbar>
+    <ion-button
+      [disabled]="!selectedHorario || isLoadingAgendarConsulta"
+      class="button"
+      color="primary"
+      expand="full"
+      (click)="agendar()"
+    >
+      <ion-spinner
+        *ngIf="isLoadingAgendarConsulta"
+        name="crescent"
+      ></ion-spinner>
+      <span *ngIf="!isLoadingAgendarConsulta">Agendar Consulta</span>
     </ion-button>
-  </ion-item>
-</ion-list>
+  </ion-toolbar>
+</ion-footer>

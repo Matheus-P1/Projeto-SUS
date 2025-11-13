@@ -1,0 +1,54 @@
+.doctor-card-container {
+  background: var(--ion-color-light, #f4f4f4);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-family: "Arial", sans-serif;
+}
+
+.info-section {
+  .doctor-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 4px 0;
+  }
+
+  .doctor-specialty,
+  .doctor-crm {
+    font-size: 1rem;
+    color: var(--ion-color-medium-shade, #777);
+    margin: 0 0 4px 0;
+  }
+
+  .doctor-location {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    margin-top: 12px;
+  }
+}
+
+.availability-section {
+  margin-top: 16px;
+
+  .section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ion-color-medium-shade, #777);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .slots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  ion-button {
+    --border-radius: 20px;
+    font-size: 0.9rem;
+  }
+}

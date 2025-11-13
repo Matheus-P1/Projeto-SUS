@@ -1,0 +1,25 @@
+<div class="doctor-card-container">
+  <div class="info-section">
+    <h2 class="doctor-name">{{ name }}</h2>
+    <p class="doctor-specialty">{{ specialty }}</p>
+    <p class="doctor-crm">CRM: {{ crm }}</p>
+    <p class="doctor-location">
+      Local: {{ healthUnit?.name }} - {{ healthUnit?.address }}
+    </p>
+  </div>
+
+  <div class="availability-section">
+    <ion-label class="section-title">Dias e Horários Disponíveis</ion-label>
+
+    <div class="slots-container">
+      <ion-button
+        *ngFor="let slot of availability"
+        size="small"
+        [fill]="slot === selectedSlot ? 'solid' : 'outline'"
+        (click)="selectSlot(slot)"
+      >
+        {{ slot.item }}
+      </ion-button>
+    </div>
+  </div>
+</div>
