@@ -15,10 +15,8 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
 
-  // --- ADIÇÕES PARA VER SENHA ---
   showPassword = false;
   passwordIcon = 'eye-off-outline';
-  // --- FIM DAS ADIÇÕES ---
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +32,6 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // --- NOVA FUNÇÃO PARA VER SENHA ---
   togglePassword() {
     this.showPassword = !this.showPassword;
     if (this.showPassword) {
@@ -43,7 +40,6 @@ export class LoginPage implements OnInit {
       this.passwordIcon = 'eye-off-outline';
     }
   }
-  // --- FIM DA NOVA FUNÇÃO ---
 
   fazerLogin() {
     if (this.loginForm.invalid) {
@@ -61,11 +57,8 @@ export class LoginPage implements OnInit {
         this.isLoading = false;
 
         localStorage.setItem('token', response.access_token);
-        
-        // **IMPORTANTE**: Lembre-se de salvar o ID do usuário aqui se a sua API o retornar
-        // Ex: if (response.user && response.user.id) {
-        //   localStorage.setItem('userId_logado', response.user.id);
-        // }
+
+        localStorage.setItem('userId_logado', response.user.id);
 
         this.router.navigate(['/home']);
       },
