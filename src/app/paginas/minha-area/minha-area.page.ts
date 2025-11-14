@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
-import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
-import { BarraDeAbasComponent } from '../../componentes/barra-de-abas/barra-de-abas.component';
 import {
   IonHeader,
   IonContent,
@@ -16,10 +14,10 @@ import {
   IonIcon,
   IonLabel,
   IonItem,
-  // IonText,
-  // IonToolbar
 } from '@ionic/angular/standalone';
 
+import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
+import { BarraDeAbasComponent } from '../../componentes/barra-de-abas/barra-de-abas.component';
 import { API_BASE_URL } from 'src/app/shared/api.url';
 
 @Component({
@@ -74,16 +72,15 @@ export class MinhaAreaPage implements OnInit {
   }
 
   carregarDadosUsuario() {
-    const userId = localStorage.getItem('userId_logado');
     const token = localStorage.getItem('token');
 
-    if (!userId || !token) {
-      console.error('Usuário não logado ou token não encontrado!');
+    if (!token) {
+      console.error('Usuário não logado! Token não encontrado.');
       this.router.navigate(['/login']);
       return;
     }
 
-    const url = `${API_BASE_URL}/users/${userId}`;
+    const url = `${API_BASE_URL}/auth/me`; 
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -98,7 +95,6 @@ export class MinhaAreaPage implements OnInit {
         this.userInfo.cpf = resposta.cpf;
         this.userInfo.email = resposta.email;
         this.userInfo.telefone = resposta.phone;
-        
         this.userInfo.dataNascimento = this.formatarData(resposta.birthDate);
 
         this.userInfo.sexo = resposta.sexo || 'Não informado'; 
