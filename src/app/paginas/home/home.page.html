@@ -41,45 +41,10 @@
       </ion-grid>
     </div>
 
-    <div class="agendamentos-section section">
-      <h3>Agendamentos</h3>
-      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-
-      <div
-        *ngIf="isLoading"
-        style="
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 80%;
-        "
-      >
-        <ion-spinner></ion-spinner>
-      </div>
-
-      <div *ngIf="!isLoading">
-        <div
-          *ngIf="agendamentos.length === 0"
-          style="
-            padding: 20px;
-            text-align: center;
-            color: var(--ion-color-medium);
-          "
-        >
-          <p>Você ainda não possui agendamentos.</p>
-        </div>
-
-        <div class="appointment-list" *ngIf="agendamentos.length > 0">
-          <app-appointment-card
-            *ngFor="let agendamento of agendamentos"
-            [appointment]="agendamento"
-          >
-          </app-appointment-card>
-        </div>
-      </div>
-    </div>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <app-lista-agendamentos></app-lista-agendamentos>
   </div>
 </ion-content>
 

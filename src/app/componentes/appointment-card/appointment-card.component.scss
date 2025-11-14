@@ -2,6 +2,29 @@
   margin: 12px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.3s ease;
+
+  &.cancelled {
+    opacity: 0.7;
+
+    .card-content {
+      opacity: 0.8;
+    }
+  }
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 8px;
+  border-top: 1px solid var(--ion-color-step-150, #e0e0e0);
+
+  &.card-footer-removed {
+    justify-content: center;
+    ion-button {
+      --color: var(--ion-color-medium-shade);
+    }
+  }
 }
 
 .card-header {
@@ -28,9 +51,18 @@
   }
 
   .status {
-    ion-badge {
-      font-size: 0.8rem;
-      margin-top: 8px;
+    .status-chip {
+      height: 26px;
+      font-size: 0.75rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+
+      ion-label {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     }
   }
 }

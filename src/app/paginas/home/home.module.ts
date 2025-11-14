@@ -12,6 +12,7 @@ import { HomePage } from './home.page';
 import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
 import { BarraDeAbasComponent } from '../../componentes/barra-de-abas/barra-de-abas.component';
 import { AppointmentCardComponent } from 'src/app/componentes/appointment-card/appointment-card.component';
+import { ListaAgendamentosComponent } from 'src/app/componentes/lista-agendamentos/lista-agendamentos.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { AppointmentCardComponent } from 'src/app/componentes/appointment-card/a
     CabecalhoComponent,
     BarraDeAbasComponent,
     AppointmentCardComponent,
+    ListaAgendamentosComponent,
   ],
   declarations: [HomePage],
 })

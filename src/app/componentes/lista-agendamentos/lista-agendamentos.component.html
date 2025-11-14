@@ -1,0 +1,77 @@
+<div class="section">
+  <h3>{{ titulo }}</h3>
+
+  <ion-label
+    class="filter-label"
+    *ngIf="!isLoading && agendamentosMaster.length > 0"
+  >
+    Filtrar por:
+  </ion-label>
+  <div class="filter-chips" *ngIf="!isLoading && agendamentosMaster.length > 0">
+    <ion-chip
+      [outline]="filtroStatusAtivo !== 'Todos'"
+      (click)="selecionarFiltro('Todos')"
+    >
+      <ion-label>Todos</ion-label>
+    </ion-chip>
+    <ion-chip
+      [outline]="filtroStatusAtivo !== 'Pending'"
+      color="warning"
+      (click)="selecionarFiltro('Pending')"
+    >
+      <ion-label>Pendentes</ion-label>
+    </ion-chip>
+    <ion-chip
+      [outline]="filtroStatusAtivo !== 'Confirmed'"
+      color="success"
+      (click)="selecionarFiltro('Confirmed')"
+    >
+      <ion-label>Confirmados</ion-label>
+    </ion-chip>
+    <ion-chip
+      [outline]="filtroStatusAtivo !== 'Cancelled'"
+      color="danger"
+      (click)="selecionarFiltro('Cancelled')"
+    >
+      <ion-label>Cancelados</ion-label>
+    </ion-chip>
+  </div>
+
+  <div
+    *ngIf="isLoading"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+    "
+  >
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <div
+      *ngIf="agendamentosMaster.length === 0"
+      style="padding: 20px; text-align: center; color: var(--ion-color-medium)"
+    >
+      <p>Você ainda não possui agendamentos.</p>
+    </div>
+
+    <div
+      *ngIf="agendamentosMaster.length > 0 && agendamentos.length === 0"
+      style="padding: 20px; text-align: center; color: var(--ion-color-medium)"
+    >
+      <p>Nenhum agendamento encontrado para este filtro.</p>
+    </div>
+
+    <div class="appointment-list" *ngIf="agendamentos.length > 0">
+      <app-appointment-card
+        *ngFor="let agendamento of agendamentos"
+        [appointment]="agendamento"
+        (cancelClicked)="promptCancelarAgendamento($event)"
+        (removeClicked)="promptRemoverAgendamento($event)"
+      >
+      </app-appointment-card>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,8 @@ import {
   bugOutline,
   bookOutline,
   arrowBack,
+  closeCircleOutline,
+  trashOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -65,6 +67,8 @@ export class AppComponent {
       bugOutline,
       bookOutline,
       arrowBack,
+      closeCircleOutline,
+      trashOutline,
     });
   }
 }

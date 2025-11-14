@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-// Interface que define os dados que o card espera
 export interface Appointment {
   _id: string;
   dateTime: string;
@@ -26,12 +25,12 @@ export interface Appointment {
   imports: [CommonModule, IonicModule],
 })
 export class AppointmentCardComponent {
-  // O componente recebe o objeto de agendamento inteiro
   @Input() appointment: Appointment | null = null;
+  @Output() cancelClicked = new EventEmitter<string>();
+  @Output() removeClicked = new EventEmitter<string>();
 
   constructor() {}
 
-  /** Converte a string de data (UTC) para o formato local dd/mm/aaaa */
   get formattedDate(): string {
     if (!this.appointment) return '';
     try {
@@ -46,33 +45,56 @@ export class AppointmentCardComponent {
     }
   }
 
-  /** Converte a string de data (UTC) para a hora local HHhMM */
   get formattedTime(): string {
     if (!this.appointment) return '';
     try {
       const date = new Date(this.appointment.dateTime);
-      // 'toLocaleTimeString' converte do UTC para o fuso local do usuário
+
       const time = date.toLocaleTimeString('pt-BR', {
         hour: '2-digit',
         minute: '2-digit',
       });
-      return time.replace(':', 'h'); // ex: "05h00"
+      return time.replace(':', 'h');
     } catch (e) {
       return '--h--';
     }
   }
 
-  /** Retorna uma cor baseada no status do agendamento */
   get statusColor(): string {
     switch (this.appointment?.status) {
       case 'Pending':
-        return 'warning'; // Amarelo
+        return 'warning';
       case 'Confirmed':
-        return 'success'; // Verde
+        return 'success';
       case 'Cancelled':
-        return 'danger'; // Vermelho
+        return 'danger';
       default:
-        return 'medium'; // Cinza
+        return 'medium';
     }
+  }
+
+  get formattedStatus(): string {
+    if (!this.appointment) return '';
+
+    switch (this.appointment.status) {
+      case 'Pending':
+        return 'Pendente';
+      case 'Confirmed':
+        return 'Confirmado';
+      case 'Cancelled':
+        return 'Cancelado';
+      default:
+        return this.appointment.status;
+    }
+  }
+
+  onCancelClick(event: MouseEvent) {
+    event.stopPropagation();
+    this.cancelClicked.emit(this.appointment?._id);
+  }
+
+  onRemoveClick(event: MouseEvent) {
+    event.stopPropagation();
+    this.removeClicked.emit(this.appointment?._id);
   }
 }

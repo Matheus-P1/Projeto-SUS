@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { API_BASE_URL } from 'src/app/shared/api.url';
-import { Appointment } from 'src/app/componentes/appointment-card/appointment-card.component';
-import { HttpClient } from '@angular/common/http';
+import { ListaAgendamentosComponent } from 'src/app/componentes/lista-agendamentos/lista-agendamentos.component';
 
 interface AgendamentoApi {
   _id: string;
@@ -33,9 +31,8 @@ interface AgendamentoApi {
   standalone: false,
 })
 export class HomePage implements OnInit {
-  private readonly API_URL = API_BASE_URL;
-  public agendamentos: Appointment[] = [];
-  public isLoading: boolean = false;
+  @ViewChild(ListaAgendamentosComponent)
+  listaAgendamentos!: ListaAgendamentosComponent;
 
   private allServices = [
     {
@@ -67,62 +64,19 @@ export class HomePage implements OnInit {
 
   servicosReduzidos = this.allServices.slice(0, 3);
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.carregarAgendamentos();
-  }
-
-  carregarAgendamentos() {
-    this.isLoading = true;
-    const url = this.API_URL + '/appointments';
-
-    this.http
-      .get<AgendamentoApi[]>(url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .subscribe({
-        next: (dadosDaApi) => {
-          const agendamentosFormatados = dadosDaApi.map(
-            (apiItem): Appointment => {
-              return {
-                _id: apiItem._id,
-                dateTime: apiItem.dateTime,
-                type: apiItem.type,
-                status: apiItem.status,
-                doctor: apiItem.doctor,
-                healthUnit: apiItem.healthUnit,
-              };
-            }
-          );
-
-          this.agendamentos = agendamentosFormatados.sort((a, b) => {
-            return (
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-            );
-          });
-
-          this.isLoading = false;
-        },
-        error: (err) => {
-          console.error('Erro ao buscar agendamentos', err);
-          this.isLoading = false;
-        },
-      });
-  }
+  ngOnInit() {}
 
   handleRefresh(event: any) {
-    this.carregarAgendamentos();
-
-    setTimeout(() => {
-      event.target.complete();
-    }, 1500);
+    if (this.listaAgendamentos) {
+      this.listaAgendamentos.carregarAgendamentos(event);
+    } else {
+      setTimeout(() => event.target.complete(), 500);
+    }
   }
 
   onServiceClick(serviceId: string) {
-    console.log('Clicou no serviço (Home):', serviceId);
     let navigationPromise: Promise<boolean> | null = null;
     if (serviceId === 'consulta') {
       navigationPromise = this.router.navigate(['/agendar-consulta']);

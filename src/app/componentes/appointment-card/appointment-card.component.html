@@ -1,12 +1,16 @@
-<ion-card *ngIf="appointment" class="appointment-card">
+<ion-card
+  *ngIf="appointment"
+  class="appointment-card"
+  [class.cancelled]="appointment.status === 'Cancelled'"
+>
   <ion-card-header class="card-header">
     <div class="date-time">
       <div class="date">{{ formattedDate }}</div>
       <div class="time">{{ formattedTime }}</div>
     </div>
     <div class="status">
-      <ion-badge [color]="statusColor" mode="ios">{{
-        appointment.status
+      <ion-badge class="status-chip" [color]="statusColor" mode="ios">{{
+        formattedStatus
       }}</ion-badge>
     </div>
   </ion-card-header>
@@ -35,4 +39,36 @@
       </ion-label>
     </div>
   </ion-card-content>
+
+  <ion-footer
+    *ngIf="
+      appointment.status === 'Pending' || appointment.status === 'Confirmed'
+    "
+    class="card-footer"
+  >
+    <ion-button
+      fill="clear"
+      color="danger"
+      size="small"
+      (click)="onCancelClick($event)"
+    >
+      <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+      Cancelar Agendamento
+    </ion-button>
+  </ion-footer>
+
+  <ion-footer
+    *ngIf="appointment.status === 'Cancelled'"
+    class="card-footer card-footer-removed"
+  >
+    <ion-button
+      fill="clear"
+      color="medium"
+      size="small"
+      (click)="onRemoveClick($event)"
+    >
+      <ion-icon name="trash-outline" slot="start"></ion-icon>
+      Remover do Histórico
+    </ion-button>
+  </ion-footer>
 </ion-card>
