@@ -4,35 +4,53 @@
       <h1 class="login-title">Login</h1>
 
       <form [formGroup]="loginForm" (ngSubmit)="fazerLogin()">
-        
+
         <div class="input-group">
           <label for="usuario">Usuário:</label>
+
           <ion-input
             id="usuario"
             placeholder="Digite seu usuário"
             formControlName="usuario"
           ></ion-input>
+
+          <!-- ERRO: campo obrigatório -->
+          <p class="error-message" *ngIf="loginForm.get('usuario')?.touched && loginForm.get('usuario')?.hasError('required')">
+            O usuário é obrigatório.
+          </p>
         </div>
-        
+
         <div class="input-group">
           <label for="senha">Senha:</label>
+
           <ion-input
             id="senha"
             [type]="showPassword ? 'text' : 'password'"
             placeholder="Digite sua senha"
             formControlName="senha"
           ></ion-input>
+
           <ion-icon
             class="password-icon"
             [name]="passwordIcon"
             (click)="togglePassword()"
             aria-label="Mostrar/ocultar senha"
           ></ion-icon>
+
+          <!--  ERRO: campo obrigatório -->
+          <p class="error-message" *ngIf="loginForm.get('senha')?.touched && loginForm.get('senha')?.hasError('required')">
+            A senha é obrigatória.
+          </p>
+
+          <!--  ERRO: senha muito curta -->
+          <p class="error-message" *ngIf="loginForm.get('senha')?.touched && loginForm.get('senha')?.hasError('minlength')">
+            A senha deve ter pelo menos 8 caracteres.
+          </p>
         </div>
 
-        <a routerLink="/esqueci-minha-senha" class="forgot-password"
-          >Esqueci minha senha</a
-        >
+        <a routerLink="/esqueci-minha-senha" class="forgot-password">
+          Esqueci minha senha
+        </a>
 
         <ion-button
           type="submit"
@@ -41,13 +59,14 @@
           [disabled]="loginForm.invalid || isLoading"
         >
           <span *ngIf="!isLoading">Entrar</span>
-          <ion-spinner *ngIf="isLoading"></ion-spinner
-        ></ion-button>
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+        </ion-button>
 
         <p class="signup-text">
           Não tem conta?
           <a routerLink="/cadastro" class="signup-link">Cadastre-se</a>
         </p>
+
       </form>
     </div>
   </div>
