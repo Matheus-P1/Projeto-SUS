@@ -141,14 +141,24 @@
         color: #0033cc;
       }
     }
-  }
+  } 
   .error-message {
   color: #d9534f; /* vermelho */
   font-size: 13px;
   margin-top: 4px;
   padding-left: 4px;
 }
+/* Bordas vermelhas quando o input estiver inválido */
+.input-group ion-input.ng-invalid.ng-touched {
+  --border-color: #d9534f !important;
+  border: 2px solid #d9534f !important;
+  border-radius: 8px;
+}
 
+/* Ajuste para o fundo ficar igual mesmo com erro */
+.input-group ion-input.ng-invalid.ng-touched::part(native) {
+  background: #f2f2f8 !important;
+}
 }
 
 

@@ -103,4 +103,16 @@
     margin-top: 4px;
     font-weight: bold;
   }
+  /* Bordas vermelhas quando o campo estiver inválido */
+.form-field ion-input.ng-invalid.ng-touched {
+  --border-color: #e63946 !important;
+  border: 2px solid #e63946 !important;
+  border-radius: 8px;
+}
+
+/* Garante que o fundo não muda quando dá erro */
+.form-field ion-input.ng-invalid.ng-touched::part(native) {
+  background: #f2f2f8 !important;
+}
+
 }
