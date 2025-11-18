@@ -22,7 +22,7 @@ import {
 
 import { BarraDeAbasComponent } from '../../componentes/barra-de-abas/barra-de-abas.component';
 import { API_BASE_URL } from 'src/app/shared/api.url';
-import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
+import { CabecalhoComponent } from 'src/app/componentes/cabecalho/cabecalho.component';
 
 @Component({
   selector: 'app-minha-area',
@@ -45,7 +45,7 @@ import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-hea
     IonLabel,
     IonItem,
     BarraDeAbasComponent,
-    SimpleHeaderModule,
+    CabecalhoComponent,
   ],
 })
 export class MinhaAreaPage implements OnInit {

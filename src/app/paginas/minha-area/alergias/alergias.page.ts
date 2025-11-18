@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonHeader,
-  IonToolbar,
   IonContent,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonButton,
   IonIcon,
   IonImg,
@@ -36,12 +31,7 @@ import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-hea
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
     IonContent,
-    IonTitle,
-    IonButtons,
-    IonBackButton,
     IonButton,
     IonIcon,
     IonImg,

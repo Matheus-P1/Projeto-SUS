@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
 
 import {
-  IonHeader, IonToolbar, IonContent, IonTitle, IonButtons, IonBackButton,
-  IonCard, IonGrid, IonRow, IonCol, IonButton, IonIcon, IonLabel,
+  IonContent,
+  IonCard, 
+  IonGrid, 
+  IonRow, 
+  IonCol, 
+  IonButton, 
+  IonIcon, 
+  IonLabel,
   AlertController
 } from '@ionic/angular/standalone';
 
@@ -14,9 +21,17 @@ import {
   styleUrls: ['./doador.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, FormsModule, IonHeader, IonToolbar, IonContent, IonTitle,
-    IonButtons, IonBackButton, IonCard, IonGrid, IonRow, IonCol, IonButton,
-    IonIcon, IonLabel
+    CommonModule, 
+    FormsModule, 
+    IonContent,
+    IonCard, 
+    IonGrid, 
+    IonRow, 
+    IonCol, 
+    IonButton,
+    IonIcon, 
+    IonLabel,
+    SimpleHeaderModule
   ]
 })
 export class DoadorPage {

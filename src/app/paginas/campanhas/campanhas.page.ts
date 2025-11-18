@@ -13,7 +13,6 @@ import {
   IonCol,
   IonImg,
 } from '@ionic/angular/standalone';
-import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
 
 @Component({
   selector: 'app-campanhas',
@@ -32,7 +31,6 @@ import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-hea
     IonRow,
     IonCol,
     IonImg,
-    SimpleHeaderModule,
   ],
 })
 export class CampanhasPage {

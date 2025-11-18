@@ -3,22 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ModalController } from '@ionic/angular';
 
 import { 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
-  IonBackButton, 
-  IonTitle, 
   IonContent, 
   IonImg, 
   IonButton, 
-  IonIcon, 
-  //IonList, 
-  //IonItem, 
-  //IonLabel 
+  IonIcon,
 } from '@ionic/angular/standalone';
 
 import { MedicamentosService, Medicamento } from './medicamentos.service';
 import { MedicamentosModalComponent } from '../../../componentes/medicamentos-modal/medicamentos-modal.component';
+import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
 
 @Component({
   selector: 'app-medicamentos',
@@ -27,20 +20,13 @@ import { MedicamentosModalComponent } from '../../../componentes/medicamentos-mo
   standalone: true,
   imports: [
     CommonModule, 
-    MedicamentosModalComponent,
+    //MedicamentosModalComponent,
     CommonModule, 
-    IonHeader, 
-    IonToolbar, 
-    IonButtons, 
-    IonBackButton, 
-    IonTitle, 
     IonContent, 
     IonImg, 
     IonButton, 
     IonIcon, 
-    //IonList, 
-    //IonItem, 
-    //IonLabel
+    SimpleHeaderModule
   ]
 })
 export class MedicamentosPage implements OnInit {

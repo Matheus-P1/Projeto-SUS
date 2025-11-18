@@ -7,14 +7,10 @@ import { DiarioSaudeService, RegistroPressao, RegistroGlicose, RegistroIMC } fro
 import { PressaoModalComponent } from '../../../componentes/pressao-modal/pressao-modal.component';
 import { GlicoseModalComponent } from '../../../componentes/glicose-modal/glicose-modal.component';
 import { ImcModalComponent } from '../../../componentes/imc-modal/imc-modal.component';
+import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
 
 import {
-  IonHeader, 
-  IonToolbar, 
   IonContent, 
-  IonTitle,
-  IonButtons, 
-  IonBackButton,
   IonSegment, 
   IonSegmentButton, 
   IonLabel, 
@@ -33,12 +29,7 @@ import {
   imports: [
     CommonModule, 
     FormsModule, 
-    IonHeader, 
-    IonToolbar, 
     IonContent, 
-    IonTitle,
-    IonButtons, 
-    IonBackButton, 
     IonSegment, 
     IonSegmentButton, 
     IonLabel, 
@@ -47,9 +38,10 @@ import {
     IonCol, 
     IonCard, 
     IonIcon,
-    PressaoModalComponent, 
-    GlicoseModalComponent,
-    ImcModalComponent
+    //PressaoModalComponent, 
+    //GlicoseModalComponent,
+    //ImcModalComponent,
+    SimpleHeaderModule
   ]
 })
 export class DiarioSaudePage implements OnInit {
