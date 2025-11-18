@@ -1,75 +1,89 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/servicos"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Agendar Exame</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-simple-header titulo="Agendar Exame"> </app-simple-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content-padding">
-    
-    <h3 class="page-title">AGENDAR EXAME</h3>
+  <form [formGroup]="myForm" (ngSubmit)="agendar()">
+    <div class="content-padding">
+      <h3 class="page-title">Agendar Exame</h3>
+      <ion-card class="search-card">
+        <ion-card-content>
+          <ion-label>Escolha uma unidade de saúde:</ion-label>
+          <app-api-select
+            label="Unidade de Saúde"
+            placeholder="Buscar unidade..."
+            formControlName="unidade"
+            [loading]="isLoadingUnidades"
+            [options]="listaDeUnidades"
+            [error]="getExameSelectErrorMessage()"
+          >
+          </app-api-select>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-card class="search-card">
-      <ion-card-content>
-        <ion-label>Tipo de exame:</ion-label>
-        <ion-searchbar 
-          placeholder="Buscar" 
-          class="custom-searchbar"
-          [(ngModel)]="tipoExame"
-        ></ion-searchbar>
-      </ion-card-content>
-    </ion-card>
+      <ion-card class="search-card">
+        <ion-card-content>
+          <ion-label>Tipo de exame:</ion-label>
+          <app-api-select
+            label="Exame"
+            placeholder="Buscar exame..."
+            formControlName="exame"
+            [loading]="isLoadingExames"
+            [options]="listaDeExames"
+            [error]="getExameSelectErrorMessage()"
+          >
+          </app-api-select>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-card class="search-card">
-      <ion-card-content>
-       
-         <ion-label>Anexar foto da guia:</ion-label>
+      <ion-card class="search-card">
+        <ion-card-content>
+          <ion-label>Horário do exame:</ion-label>
+          <app-api-select
+            label="Horário do Exame"
+            placeholder="Buscar horário..."
+            formControlName="horario"
+            [loading]="isLoadingHorarios"
+            [options]="listaDeHorarios"
+            [error]="getHorarioSelectErrorMessage()"
+          >
+          </app-api-select>
+        </ion-card-content>
+      </ion-card>
 
-        <input
-          type="file"
-          accept="image/png, image/jpeg, application/pdf"
-          style="display: none;"
-          #fileUploadInput
-          (change)="onFileSelected($event)"
-        />
-
-        <ion-button 
-          class="upload-button" 
-          expand="full" 
-          (click)="fileUploadInput.click()"
-        >
-          <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
-          {{ nomeArquivoGuia }}
-        </ion-button>
-        
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="search-card">
-      <ion-card-content>
-        <ion-label>Escolha uma unidade:</ion-label>
-        <ion-searchbar 
-          placeholder="Buscar" 
-          class="custom-searchbar"
-          [(ngModel)]="unidade"
-        ></ion-searchbar>
-      </ion-card-content>
-    </ion-card>
-
-  </div> 
-  
-  <ion-footer class="ion-no-border">
-    <ion-toolbar>
-      <ion-button 
-        class="agendar-button" 
-        (click)="agendar()" 
-        expand="full">
-        Agendar
-      </ion-button>
-    </ion-toolbar>
-  </ion-footer>
-
+      <ion-card class="search-card">
+        <ion-card-content>
+          <ion-label>Anexar foto da guia:</ion-label>
+          <input
+            type="file"
+            accept="image/png, image/jpeg, application/pdf"
+            style="display: none"
+            #fileUploadInput
+            (change)="onFileSelected($event)"
+          />
+          <ion-button
+            class="upload-button"
+            expand="full"
+            (click)="fileUploadInput.click()"
+            type="button"
+          >
+            <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+            {{ nomeArquivoGuia }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </form>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button
+      class="agendar-button"
+      type="submit"
+      [disabled]="myForm.invalid || isLoadingAgendamento || isLoadingExames || isLoadingHorarios || isLoadingUnidades"
+      expand="full"
+      (click)="criarAgendamento()"
+    >
+      <ion-spinner *ngIf="isLoadingAgendamento" name="crescent"></ion-spinner>
+      <span *ngIf="!isLoadingAgendamento">Agendar Exame</span>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

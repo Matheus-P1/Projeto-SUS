@@ -1,0 +1,12 @@
+<app-simple-header titulo="Meus Agendamentos"> </app-simple-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-lista-agendamentos [titulo]="'Minhas Consultas'">
+  </app-lista-agendamentos>
+
+  <app-lista-exames titulo="Meus Exames"></app-lista-exames>
+</ion-content>

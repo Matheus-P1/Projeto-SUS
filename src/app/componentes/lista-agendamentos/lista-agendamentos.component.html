@@ -54,14 +54,14 @@
       *ngIf="agendamentosMaster.length === 0"
       style="padding: 20px; text-align: center; color: var(--ion-color-medium)"
     >
-      <p>Você ainda não possui agendamentos.</p>
+      <p>Você ainda não possui consulta agendadas.</p>
     </div>
 
     <div
       *ngIf="agendamentosMaster.length > 0 && agendamentos.length === 0"
       style="padding: 20px; text-align: center; color: var(--ion-color-medium)"
     >
-      <p>Nenhum agendamento encontrado para este filtro.</p>
+      <p>Nenhuma consulta agendada encontrada para este filtro.</p>
     </div>
 
     <div class="appointment-list" *ngIf="agendamentos.length > 0">

@@ -58,6 +58,8 @@ export class LoginPage implements OnInit {
 
         localStorage.setItem('token', response.access_token);
 
+        localStorage.setItem('userId_logado', response.user_id);
+
         this.router.navigate(['/home']);
       },
       error: (err) => {

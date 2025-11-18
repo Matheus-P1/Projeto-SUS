@@ -1,34 +1,35 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/minha-area"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Alergias</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-simple-header titulo="Minhas Alergias"> </app-simple-header>
 
 <ion-content [fullscreen]="true">
   <div class="content-container">
-
-    <ion-img src="assets/icon/alergia.png" alt="Ilustração de Alergia" class="main-image"></ion-img>
+    <ion-img
+      src="assets/icon/alergia.png"
+      alt="Ilustração de Alergia"
+      class="main-image"
+    ></ion-img>
 
     <h2 class="main-title">
-      {{ alergiasCadastradas.length > 0 ? 'Minhas Alergias' : 'Você ainda não possui alergias cadastradas.' }}
+      {{ alergiasCadastradas.length > 0 ? 'Minhas Alergias' : 'Você ainda não
+      possui alergias cadastradas.' }}
     </h2>
 
     <div *ngIf="alergiasCadastradas.length === 0" class="empty-state">
       <p class="description-text">
-        Ao adicionar alergias, os profissionais de saúde poderão visualizar as informações registradas no seu próximo atendimento.
+        Ao adicionar alergias, os profissionais de saúde poderão visualizar as
+        informações registradas no seu próximo atendimento.
       </p>
 
-      <ion-button class="add-button" (click)="abrirModalAlergias()" expand="full">
+      <ion-button
+        class="add-button"
+        (click)="abrirModalAlergias()"
+        expand="full"
+      >
         <ion-icon name="add" slot="start"></ion-icon>
         Adicionar Alergias
       </ion-button>
     </div>
 
     <div *ngIf="alergiasCadastradas.length > 0" class="list-state">
-
       <div class="cards-grid">
         <div class="alergia-card" *ngFor="let alergia of alergiasCadastradas">
           <div class="card-icon-wrapper">
@@ -45,11 +46,14 @@
         </div>
       </div>
 
-      <ion-button (click)="abrirModalAlergias()" expand="block" fill="outline" class="btn-editar">
+      <ion-button
+        (click)="abrirModalAlergias()"
+        expand="block"
+        fill="outline"
+        class="btn-editar"
+      >
         Editar Alergias
       </ion-button>
-
     </div>
-
   </div>
 </ion-content>

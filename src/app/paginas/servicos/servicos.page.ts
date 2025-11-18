@@ -7,10 +7,6 @@ import { CabecalhoComponent } from 'src/app/componentes/cabecalho/cabecalho.comp
 
 import {
   IonHeader,
-  IonToolbar,
-  //IonImg,
-  IonButtons,
-  IonButton,
   IonIcon,
   IonContent,
   IonGrid,
@@ -35,10 +31,6 @@ import {
     CommonModule,
     FormsModule,
     IonHeader,
-    //IonToolbar,
-    //IonImg,
-    //IonButtons,
-    //IonButton,
     IonIcon,
     IonContent,
     IonGrid,
@@ -93,6 +85,8 @@ export class ServicosPage {
       navigationPromise = this.router.navigate(['/agendar-consulta']);
     } else if (serviceId === 'exame') {
       navigationPromise = this.router.navigate(['/agendar-exames']);
+    } else if (serviceId === 'agendamentos') {
+      navigationPromise = this.router.navigate(['/meus-agendamentos']);
     } else if (serviceId === 'resultados') {
       navigationPromise = this.router.navigate(['/resultados-exames']);
     } else if (serviceId === 'atendimentos') {

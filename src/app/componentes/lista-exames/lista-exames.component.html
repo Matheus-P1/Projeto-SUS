@@ -1,0 +1,63 @@
+<div class="section">
+  <h3>{{ titulo }}</h3>
+
+  <div class="filter-container" *ngIf="!isLoading && examesMaster.length > 0">
+    <ion-label class="filter-label">Filtrar por:</ion-label>
+    <div class="filter-chips">
+      <ion-chip
+        [outline]="filtroStatusAtivo !== 'Todos'"
+        (click)="selecionarFiltro('Todos')"
+      >
+        <ion-label>Todos</ion-label>
+      </ion-chip>
+      <ion-chip
+        [outline]="filtroStatusAtivo !== 'Pending'"
+        color="warning"
+        (click)="selecionarFiltro('Pending')"
+      >
+        <ion-label>Pendentes</ion-label>
+      </ion-chip>
+      <ion-chip
+        [outline]="filtroStatusAtivo !== 'Confirmed'"
+        color="success"
+        (click)="selecionarFiltro('Confirmed')"
+      >
+        <ion-label>Confirmados</ion-label>
+      </ion-chip>
+      <ion-chip
+        [outline]="filtroStatusAtivo !== 'Cancelled'"
+        color="danger"
+        (click)="selecionarFiltro('Cancelled')"
+      >
+        <ion-label>Cancelados</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <div *ngIf="examesMaster.length === 0" class="empty-state">
+      <p>Você não possui exames agendados.</p>
+    </div>
+
+    <div
+      *ngIf="examesMaster.length > 0 && examesExibidos.length === 0"
+      class="empty-state"
+    >
+      <p>Nenhum exame encontrado para este filtro.</p>
+    </div>
+
+    <div class="exam-list" *ngIf="examesExibidos.length > 0">
+      <app-exam-card
+        *ngFor="let exame of examesExibidos"
+        [exam]="exame"
+        (cancelClicked)="promptCancelar($event)"
+        (removeClicked)="promptRemover($event)"
+      >
+      </app-exam-card>
+    </div>
+  </div>
+</div>

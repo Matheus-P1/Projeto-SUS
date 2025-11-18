@@ -1,0 +1,40 @@
+.api-select-wrapper {
+  width: 100%;
+}
+
+.api-select-item {
+  position: relative;
+
+  --background: var(--app-color-primary-medium);
+  --border-width: 0px;
+  --inner-border-width: 0px;
+  --highlight-background: transparent;
+  border-radius: 8px;
+  margin-bottom: 4px;
+
+  ion-label {
+    font-weight: 500;
+    color: var(--ion-color-dark);
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: var(--ion-color-danger);
+
+  --background: var(--app-color-primary-medium);
+  padding: 4px 16px 8px 16px;
+  margin-top: -8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

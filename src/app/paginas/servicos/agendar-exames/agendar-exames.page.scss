@@ -1,4 +1,3 @@
-/* --- Header (Igual ao molde) --- */
 ion-toolbar {
   --background: var(--app-color-header-bg);
 }
@@ -10,58 +9,53 @@ ion-back-button {
   color: var(--app-color-primary-dark);
 }
 
-/* --- Content (Igual ao molde) --- */
 ion-content {
   --background: var(--app-color-white);
 }
 .content-padding {
   padding: 0 16px;
-  padding-top: 20px;
 }
 .page-title {
   font-weight: bold;
   font-size: 1.1em;
   color: var(--app-color-primary-dark);
-  margin-bottom: 24px; 
-  padding-left: 4px; 
+  margin-bottom: 24px;
+  padding-left: 4px;
 }
 
-/* --- Cards de Ação --- */
 .search-card {
   --background: #f0f0f0;
-  box-shadow: none; 
+  box-shadow: none;
   border-radius: 8px;
-  margin: 0 0 20px 0; 
+  margin: 0 0 20px 0;
   padding: 8px 0;
-  
+
   ion-card-content {
-    padding: 0 8px; 
+    padding: 0 8px;
   }
 
   ion-label {
     font-size: 0.9em;
     font-weight: 500;
     color: #333;
-    padding-left: 8px; 
+    padding-left: 8px;
     margin-bottom: 8px;
-    display: block; 
+    display: block;
   }
 }
 
-/* Barra de busca customizada (do Figma) */
 .custom-searchbar {
-  --background: var(--app-color-primary-medium); 
-  --box-shadow: none; 
+  --background: var(--app-color-primary-medium);
+  --box-shadow: none;
   --border-radius: 8px;
   padding: 0;
   margin: 0;
-  
+
   --color: var(--app-color-primary-dark);
   --placeholder-color: var(--app-color-primary-dark);
   --icon-color: var(--app-color-primary-dark);
 }
 
-/* Botão de "Carregar arquivo" (NOVO) */
 .upload-button {
   --background: var(--app-color-primary-medium);
   --color: var(--app-color-primary-dark);
@@ -70,20 +64,18 @@ ion-content {
   font-weight: 500;
   height: 44px;
   margin: 0;
-  font-size: 0.9em; 
+  font-size: 0.9em;
   text-transform: none;
 }
 
-
-/* --- Botão "Agendar" no Footer --- */
 ion-footer ion-toolbar {
-  --background: var(--app-color-white); 
-  padding: 10px 16px; 
+  --background: var(--app-color-white);
+  padding: 10px 16px;
 }
 
 .agendar-button {
-  --background: var(--app-color-primary-medium); 
-  --color: var(--app-color-primary-dark); 
+  --background: var(--app-color-primary-medium);
+  --color: var(--app-color-primary-dark);
   --border-radius: 8px;
   --box-shadow: none;
   font-weight: bold;

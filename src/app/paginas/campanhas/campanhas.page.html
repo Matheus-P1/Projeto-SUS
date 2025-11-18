@@ -1,16 +1,12 @@
-<ion-header class="ion-no-border">
-  <app-cabecalho></app-cabecalho>
-</ion-header>
+<app-simple-header titulo="Campanhas"> </app-simple-header>
 
 <ion-content [fullscreen]="true">
   <div class="content-padding">
-    
-    <h3 class="page-title">CAMPANHAS</h3>
+    <h3 class="page-title">Campanhas</h3>
 
     <ion-card *ngFor="let camp of campaigns">
       <ion-grid>
         <ion-row class="ion-align-items-center">
-
           <ion-col size="7">
             <div class="card-text-content">
               <h4>{{ camp.title }}</h4>
@@ -22,14 +18,12 @@
           <ion-col size="5">
             <ion-img [src]="camp.image" alt="Imagem da campanha"></ion-img>
           </ion-col>
-          
         </ion-row>
       </ion-grid>
     </ion-card>
-
   </div>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <app-barra-de-abas></app-barra-de-abas>
-</ion-footer>
+</ion-footer> -->

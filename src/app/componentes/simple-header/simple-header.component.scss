@@ -1,0 +1,28 @@
+ion-toolbar {
+  --background: var(--app-color-header-bg);
+  margin-bottom: 16px;
+
+  .simple-header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+  }
+
+  ion-buttons[slot="start"] {
+    margin: 0;
+  }
+
+  ion-title {
+    flex: 1;
+    font-size: 1.1rem;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    color: var(--app-color-primary-dark);
+    font-weight: bold;
+  }
+}
+
+ion-back-button {
+  color: var(--app-color-primary-dark);
+}

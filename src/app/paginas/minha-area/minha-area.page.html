@@ -1,17 +1,14 @@
-<ion-header class="ion-no-border">
-  <app-cabecalho></app-cabecalho>
-</ion-header>
+<app-simple-header titulo="Minha Área"> </app-simple-header>
 
 <ion-content [fullscreen]="true">
   <div class="content-padding">
+    <h3 class="page-title">Minha Área</h3>
 
-    <h3 class="page-title">MINHA ÁREA</h3>
-    
     <ion-card class="user-info-card">
       <ion-item lines="none">
         <ion-label class="user-name">{{ userInfo.nome }}</ion-label>
       </ion-item>
-      
+
       <ion-grid>
         <ion-row>
           <ion-col size="6">
@@ -23,7 +20,7 @@
               <span class="info-label">Data de Nascimento</span>
               <span class="info-value">{{ userInfo.dataNascimento }}</span>
             </div>
-             <div class="info-item">
+            <div class="info-item">
               <span class="info-label">E-mail</span>
               <span class="info-value email-value">{{ userInfo.email }}</span>
             </div>
@@ -33,7 +30,7 @@
               <span class="info-label">CPF</span>
               <span class="info-value">{{ userInfo.cpf }}</span>
             </div>
-             <div class="info-item">
+            <div class="info-item">
               <span class="info-label">Telefone</span>
               <span class="info-value">{{ userInfo.telefone }}</span>
             </div>
@@ -49,24 +46,24 @@
     <ion-grid class="action-grid">
       <ion-row>
         <ion-col size="6" *ngFor="let item of actionItems">
+          <ion-card
+            class="action-card"
+            button
+            [disabled]="item.disabled"
+            (click)="onActionClick(item.route)"
+          >
+            <div class="item-container">
+              <div class="action-icon-wrapper">
+                <ion-icon [name]="item.icon" aria-hidden="true"></ion-icon>
+              </div>
 
-          <ion-card class="action-card" button (click)="onActionClick(item.route)">
-
-            <div class="action-icon-wrapper">
-              <ion-icon [name]="item.icon" aria-hidden="true"></ion-icon>
+              <div class="action-label-wrapper">
+                <ion-label>{{ item.name }}</ion-label>
+              </div>
             </div>
-
-            <div class="action-label-wrapper">
-              <ion-label>{{ item.name }}</ion-label>
-            </div>
-
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-
-  </div> </ion-content>
-
-<ion-footer>
-  <app-barra-de-abas></app-barra-de-abas>
-</ion-footer>
+  </div>
+</ion-content>

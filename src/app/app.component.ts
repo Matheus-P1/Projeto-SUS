@@ -33,7 +33,8 @@ import {
   eyeOutline,
   cloudUploadOutline,
   addCircle,
-  add
+  add,
+  arrowBackOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -78,7 +79,8 @@ export class AppComponent {
       eyeOutline,
       cloudUploadOutline,
       addCircle,
-      add
+      add,
+      arrowBackOutline,
     });
   }
 }

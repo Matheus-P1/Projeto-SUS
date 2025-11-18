@@ -70,10 +70,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'meus-agendamentos',
+    loadChildren: () =>
+      import(
+        './paginas/servicos/meus-agendamentos/meus-agendamentos.module'
+      ).then((m) => m.MeusAgendamentosPageModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'agendar-exames',
-    loadComponent: () =>
-      import('./paginas/servicos/agendar-exames/agendar-exames.page').then(
-        (m) => m.AgendarExamesPage
+    loadChildren: () =>
+      import('./paginas/servicos/agendar-exames/agendar-exames.module').then(
+        (m) => m.AgendarExamesPageModule
       ),
     canActivate: [authGuard],
   },

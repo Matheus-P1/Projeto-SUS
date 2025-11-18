@@ -1,0 +1,72 @@
+<ion-card
+  *ngIf="exam"
+  class="exam-card"
+  [class.cancelled]="exam.status === 'Cancelled'"
+>
+  <div class="type-indicator"></div>
+
+  <ion-card-header class="card-header">
+    <div class="date-time">
+      <ion-icon name="calendar-number-outline"></ion-icon>
+      <span>{{ formattedDate }}</span>
+      <span class="separator">•</span>
+      <span>{{ formattedTime }}</span>
+    </div>
+
+    <div class="status">
+      <ion-chip class="status-chip" [class]="statusClass">
+        <ion-label>{{ formattedStatus }}</ion-label>
+      </ion-chip>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content class="card-content">
+    <div class="exam-highlight">
+      <div class="exam-icon-circle">
+        <ion-icon name="flask-outline"></ion-icon>
+      </div>
+      <div class="exam-info">
+        <h2>{{ formattedName }}</h2>
+        <p class="exam-category">Exame / Procedimento</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="location-info">
+      <div class="location-header">
+        <ion-icon name="business-outline"></ion-icon>
+        <h3>Local de Realização</h3>
+      </div>
+      <p class="place-name">{{ exam.healthUnit.name }}</p>
+      <p class="place-address">{{ exam.healthUnit.address }}</p>
+    </div>
+  </ion-card-content>
+
+  <ion-footer *ngIf="exam.status !== 'Cancelled'" class="card-footer">
+    <ion-button
+      color="danger"
+      fill="clear"
+      size="small"
+      (click)="onCancelClick($event)"
+    >
+      <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+      Cancelar Exame
+    </ion-button>
+  </ion-footer>
+
+  <ion-footer
+    *ngIf="exam.status === 'Cancelled'"
+    class="card-footer card-footer-removed"
+  >
+    <ion-button
+      color="medium"
+      fill="clear"
+      size="small"
+      (click)="onRemoveClick($event)"
+    >
+      <ion-icon name="trash-outline" slot="start"></ion-icon>
+      Remover do Histórico
+    </ion-button>
+  </ion-footer>
+</ion-card>
