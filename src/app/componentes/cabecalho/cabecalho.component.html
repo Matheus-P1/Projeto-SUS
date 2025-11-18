@@ -1,17 +1,23 @@
 <ion-toolbar>
-  <ion-buttons>
-    <ion-button (click)="goToHome()">
-      <img
-        src="assets/icon/sus-logo.png"
-        alt="Logo SUS+"
-        class="header-logo-img"
-      />
-    </ion-button>
-  </ion-buttons>
+  <div class="cabecalho-container">
+    <ion-buttons>
+      <ion-button (click)="goToHome()">
+        <img
+          src="assets/icon/sus-logo.png"
+          alt="Logo SUS+"
+          class="header-logo-img"
+        />
+      </ion-button>
+    </ion-buttons>
 
-  <ion-buttons slot="end">
-    <ion-button (click)="fazerLogout()">
-      <ion-icon slot="icon-only" style="color: black" name="log-out"></ion-icon>
-    </ion-button>
-  </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="fazerLogout()">
+        <ion-icon
+          slot="icon-only"
+          style="color: black"
+          name="log-out"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
 </ion-toolbar>

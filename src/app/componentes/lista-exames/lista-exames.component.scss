@@ -1,0 +1,40 @@
+.section {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 24px;
+  h3 {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--app-color-primary-dark);
+    margin: 0 0 8px 0;
+  }
+}
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ion-color-medium-shade);
+  display: block;
+  margin-bottom: 4px;
+}
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  ion-chip {
+    height: 26px;
+    font-size: 0.75rem;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+}
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  color: var(--ion-color-medium);
+}

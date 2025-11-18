@@ -31,7 +31,8 @@ import {
   trashOutline,
   eyeOffOutline,
   eyeOutline,
-  cloudUploadOutline
+  cloudUploadOutline,
+  arrowBackOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -74,7 +75,8 @@ export class AppComponent {
       trashOutline,
       eyeOffOutline,
       eyeOutline,
-      cloudUploadOutline
+      cloudUploadOutline,
+      arrowBackOutline,
     });
   }
 }

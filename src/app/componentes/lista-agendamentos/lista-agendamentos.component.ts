@@ -76,11 +76,23 @@ export class ListaAgendamentosComponent implements OnInit {
               };
             }
           );
-          this.agendamentosMaster = agendamentosFormatados.sort((a, b) => {
-            return (
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-            );
-          });
+          this.agendamentosMaster = agendamentosFormatados
+            .sort((a, b) => {
+              return (
+                new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+              );
+            })
+            .sort((a, b) => {
+              const statusOrder: Record<string, number> = {
+                Pending: 1,
+                Confirmed: 2,
+                Cancelled: 3,
+              };
+
+              return (
+                (statusOrder[a.status] ?? 999) - (statusOrder[b.status] ?? 999)
+              );
+            });
           this.aplicarFiltro();
           this.isLoading = false;
           if (event) event.target.complete();

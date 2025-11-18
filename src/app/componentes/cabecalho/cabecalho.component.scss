@@ -1,13 +1,18 @@
 ion-toolbar {
-  /* Aqui está a correção da cor do header. 
-    Usamos a variável do header claro, e não o escuro.
-  */
-  --background: var(--app-color-header-bg); 
+  --background: var(--app-color-header-bg);
+
+  .cabecalho-container {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    padding: 16px 0;
+    justify-content: space-between;
+  }
 }
 
 .header-logo-img {
   height: 30px;
-  margin-left: 16px;
 }
 
 ion-buttons[slot="end"] ion-icon {

@@ -72,6 +72,10 @@ export class AgendarConsultaPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.getDoctors();
+    console.log({
+      med: this.selectedMedico,
+      horario: this.selectedHorario,
+    });
   }
 
   ngOnDestroy() {
@@ -237,7 +241,7 @@ export class AgendarConsultaPage implements OnInit, OnDestroy {
           this.selectedMedico = null;
           this.especialidade = '';
           this.profissional = '';
-          this.router.navigate(['/home']);
+          this.router.navigate(['/meus-agendamentos']);
         },
         error: async (err) => {
           this.isLoadingAgendarConsulta = false;

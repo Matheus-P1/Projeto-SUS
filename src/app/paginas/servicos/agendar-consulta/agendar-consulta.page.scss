@@ -1,4 +1,3 @@
-/* --- Header --- */
 ion-toolbar {
   --background: var(--app-color-header-bg);
 }
@@ -12,14 +11,12 @@ ion-back-button {
   color: var(--app-color-primary-dark);
 }
 
-/* --- Content --- */
 ion-content {
   --background: var(--app-color-white);
 }
 
 .content-padding {
   padding: 0 16px;
-  padding-top: 20px;
 }
 
 .page-title {
@@ -30,7 +27,6 @@ ion-content {
   padding-left: 4px;
 }
 
-/* --- Cards de Busca --- */
 .search-card {
   --background: #f0f0f0;
   box-shadow: none;
@@ -59,13 +55,11 @@ ion-content {
   padding: 0;
   margin: 0;
 
-  /* Cor do ícone e do texto */
   --color: var(--app-color-primary-dark);
   --placeholder-color: var(--app-color-primary-dark);
   --icon-color: var(--app-color-primary-dark);
 }
 
-/* --- Botão "Buscar" no Footer --- */
 ion-footer ion-toolbar {
   --background: var(--app-color-white);
   padding: 10px 16px;

@@ -1,11 +1,9 @@
-/* --- Geral --- */
 ion-content {
   --background: var(--app-color-white);
 }
 
 .content-padding {
   padding: 0 16px;
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -17,9 +15,8 @@ ion-content {
   padding-left: 4px;
 }
 
-/* --- Card de Informações do Usuário --- */
 .user-info-card {
-  --background: #f0f0f0; 
+  --background: #f0f0f0;
   box-shadow: none;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -60,33 +57,34 @@ ion-content {
       font-weight: 500;
       color: var(--app-color-primary-dark);
     }
-    // Quebra de linha para e-mail longo
+
     .email-value {
-        word-break: break-all;
+      word-break: break-all;
     }
   }
 }
 
-/* --- Grid de Ações --- */
 .action-grid {
-  padding: o;
+  padding: 0;
 }
 
 .action-grid ion-col {
-    padding: 6px;
-    display: flex;
+  padding: 6px;
+  display: flex;
 }
 
 .action-card {
   --background: var(--app-color-white) !important;
   background: var(--app-color-white) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   border: 1px solid var(--app-color-card-border);
-    
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   height: 100%;
   width: 100%;
@@ -94,31 +92,31 @@ ion-content {
   padding: 12px;
   min-height: 65px;
 
-    .action-icon-wrapper {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 12px;
+  .action-icon-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
 
-        ion-icon {
-        color: var(--app-color-primary-dark) !important;
-        font-size: 22px;
-        }
+    ion-icon {
+      color: var(--app-color-primary-dark) !important;
+      font-size: 22px;
     }
+  }
 
-    .action-label-wrapper {
-        flex: 1;
-        min-width: 0;
+  .action-label-wrapper {
+    flex: 1;
+    min-width: 0;
 
-        ion-label {
-        color: var(--app-color-primary-dark) !important;
-        font-size: 0.9em;
-        font-weight: 500;
-        white-space: normal;
-        line-height: 1.3;
-        margin: 0;
-        padding: 0;
-        }
+    ion-label {
+      color: var(--app-color-primary-dark) !important;
+      font-size: 0.9em;
+      font-weight: 500;
+      white-space: normal;
+      line-height: 1.3;
+      margin: 0;
+      padding: 0;
     }
+  }
 }

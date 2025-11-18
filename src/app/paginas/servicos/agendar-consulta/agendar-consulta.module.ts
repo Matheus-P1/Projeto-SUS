@@ -8,6 +8,7 @@ import { AgendarConsultaPageRoutingModule } from './agendar-consulta-routing.mod
 
 import { AgendarConsultaPage } from './agendar-consulta.page';
 import { HttpClientModule } from '@angular/common/http';
+import { SimpleHeaderModule } from 'src/app/componentes/simple-header/simple-header.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     AgendarConsultaPageRoutingModule,
     DoctorCardComponent,
+    SimpleHeaderModule,
   ],
   declarations: [AgendarConsultaPage],
 })
