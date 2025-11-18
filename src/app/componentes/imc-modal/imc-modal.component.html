@@ -1,0 +1,33 @@
+<ion-content>
+  <div class="modal-container">
+    <h2 class="modal-title">Adicionar Registro de IMC</h2>
+    <p class="modal-subtitle">Adicione seu peso e altura</p>
+
+    <div class="form-group">
+      <ion-label>Peso (kg)</ion-label>
+      <ion-input type="number" placeholder="Ex: 70.5" [(ngModel)]="peso"></ion-input>
+    </div>
+
+    <div class="form-group">
+      <ion-label>Altura (m)</ion-label>
+      <ion-input type="number" placeholder="Ex: 1.75" [(ngModel)]="altura"></ion-input>
+    </div>
+
+    <div class="form-group">
+      <ion-label>Data</ion-label>
+      <ion-input type="date" placeholder="DD/MM/AAAA" [(ngModel)]="data"></ion-input>
+    </div>
+  </div>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-button fill="clear" class="cancel-button" (click)="cancelar()">
+        Cancelar
+      </ion-button>
+      <ion-button class="add-button" (click)="adicionar()" slot="end">
+        Adicionar
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-content>

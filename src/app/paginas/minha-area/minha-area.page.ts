@@ -59,8 +59,8 @@ export class MinhaAreaPage implements OnInit {
   
   actionItems = [
     { id: 'cartao-vacina', name: 'Cartão de vacina', icon: 'document-attach-outline', route: '/cartao-vacina' },
-    { id: 'carteirinha-doador', name: 'Carteirinha de doador', icon: 'card-outline', route: '/carteirinha-doador' },
-    { id: 'medicamentos', name: 'Meus medicamentos', icon: 'medkit-outline', route: '/meus-medicamentos' },
+    { id: 'carteirinha-doador', name: 'Carteirinha de doador', icon: 'card-outline', route: '/doador' },
+    { id: 'medicamentos', name: 'Meus medicamentos', icon: 'medkit-outline', route: '/medicamentos' },
     { id: 'alergias', name: 'Minhas Alergias', icon: 'bug-outline', route: '/alergias' },
     { id: 'diario', name: 'Diário da saúde', icon: 'book-outline', route: '/diario-saude' }
   ];

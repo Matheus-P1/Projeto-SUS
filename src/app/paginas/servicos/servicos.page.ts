@@ -62,7 +62,7 @@ export class ServicosPage {
       id: 'resultados',
       name: 'Resultados de Exames',
       icon: 'document-text-outline',
-      disabled: true,
+      disabled: false,
     },
     {
       id: 'agendamentos',
@@ -79,7 +79,6 @@ export class ServicosPage {
       id: 'atendimentos',
       name: 'Atendimentos e Internações',
       icon: 'business-outline',
-      disabled: true,
     },
     { id: 'rede', name: 'Rede de Saúde', icon: 'map-outline', disabled: true },
   ];

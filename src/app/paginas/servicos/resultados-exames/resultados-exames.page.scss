@@ -1,4 +1,4 @@
-/* --- Header (Igual ao molde) --- */
+/* --- Header --- */
 ion-toolbar {
   --background: var(--app-color-header-bg);
 }
@@ -10,14 +10,16 @@ ion-back-button {
   color: var(--app-color-primary-dark);
 }
 
-/* --- Content (Igual ao molde) --- */
+/* --- Content --- */
 ion-content {
   --background: var(--app-color-white);
 }
+
 .content-padding {
   padding: 0 16px;
   padding-top: 20px;
 }
+
 .page-title {
   font-weight: bold;
   font-size: 1.1em;
@@ -26,90 +28,27 @@ ion-content {
   padding-left: 4px; 
 }
 
-/* --- Card do Doutor --- */
-.doctor-card {
-  --background: #f0f0f0;
-  box-shadow: none; 
-  border-radius: 8px;
-  margin: 0;
-  padding: 16px; 
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-}
-
-.doctor-avatar {
-  width: 50px;
-  height: 50px;
-  background-color: var(--app-color-primary-medium);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 16px;
-
-  ion-icon {
-    font-size: 28px;
-    color: var(--app-color-primary-dark);
-  }
-}
-
-.doctor-info {
+.empty-state-container {
   display: flex;
   flex-direction: column;
+  align-items: center;   
+  text-align: center;
+  height: 70vh; 
+  justify-content: center;
+  
+  padding: 0 20px;
 }
 
-.doctor-name {
-  font-size: 1.1em;
+.main-title {
+  font-size: 1.25em;
   font-weight: bold;
   color: var(--app-color-primary-dark);
-}
-.doctor-spec, .doctor-crm {
-  font-size: 0.9em;
-  color: #333;
-}
-
-.info-label {
-  display: block;
-  font-size: 0.8em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 4px;
-}
-.info-value {
-  display: block;
-  font-size: 0.9em;
-  color: var(--app-color-primary-dark);
-}
-
-.doctor-location {
   margin-bottom: 16px;
+  line-height: 1.3;
 }
 
-.dates-button {
-  --background: var(--app-color-primary-medium);
-  --color: var(--app-color-primary-dark);
-  --border-radius: 8px;
-  --box-shadow: none;
-  font-weight: bold;
-  height: 44px;
-  margin: 0;
-  margin-top: 8px;
-  font-size: 1.1em;
-}
-
-/* --- Botão Agendar (Se for dentro do scroll) --- */
-.agendar-button-main {
-  --background: var(--app-color-primary-medium);
-  --color: var(--app-color-primary-dark);
-  --border-radius: 8px;
-  --box-shadow: none;
-  font-weight: bold;
-  height: 48px;
-  margin-top: 40px;
+.description-text {
+  font-size: 0.9em;
+  color: #333;
+  line-height: 1.5;
 }

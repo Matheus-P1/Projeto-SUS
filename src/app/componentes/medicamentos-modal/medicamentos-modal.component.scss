@@ -1,0 +1,73 @@
+ion-content {
+  --background: var(--app-color-white);
+}
+
+.modal-container {
+  padding: 24px;
+  padding-bottom: 50px; 
+}
+
+.modal-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: var(--app-color-primary-dark);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Estilo da Lista */
+.option-item {
+  --background: var(--app-color-white);
+  --border-color: #eee;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  
+  ion-label {
+    color: var(--app-color-primary-dark);
+    font-weight: 500;
+  }
+
+  ion-checkbox {
+    --size: 22px;
+    --border-radius: 4px;
+    --checkbox-background-checked: var(--app-color-primary-dark);
+    --border-color-checked: var(--app-color-primary-dark);
+  }
+}
+
+/* Estilo do Footer */
+ion-footer ion-toolbar {
+  --background: var(--app-color-white);
+  padding: 0 16px 16px 16px;
+  display: flex;
+  gap: 8px;
+
+  .cancel-button {
+    flex: 1; 
+    --color: var(--app-color-primary-dark);
+    --border-radius: 8px;
+    border: 2px solid var(--app-color-card-border);
+    font-weight: bold;
+    height: 44px;
+    text-transform: none;
+  }
+
+  .save-button {
+    flex: 1; 
+    --background: #0056b3;
+    --color: var(--app-color-white);
+    --border-radius: 24px; 
+    --box-shadow: none;
+    font-weight: bold;
+    height: 44px;
+    text-transform: none;
+  }
+}

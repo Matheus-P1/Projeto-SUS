@@ -1,0 +1,112 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/minha-area"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Diário da Saúde</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <h3 class="page-subtitle">Meus registros de Saúde</h3>
+
+  <ion-segment 
+    class="sub-tabs" 
+    (ionChange)="onSegmentChange($event)" 
+    [(ngModel)]="segmentoAtivo">
+
+    <ion-segment-button value="pressao">
+      <ion-label>Pressão</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="glicose">
+      <ion-label>Glicose</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="imc">
+      <ion-label>IMC</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="segment-content" [ngSwitch]="segmentoAtivo">
+
+    <div *ngSwitchCase="'pressao'">
+      <ion-grid class="register-grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="add-card" button (click)="abrirModalAdicionar()">
+              <ion-icon name="add-circle" class="add-icon"></ion-icon>
+              <ion-label>Adicionar<br>Registro</ion-label>
+            </ion-card>
+          </ion-col>
+          
+          <ion-col size="6" *ngFor="let reg of registrosPressao">
+            <ion-card class="reading-card">
+              <span class="reading-label">Pressão</span>
+              <span class="reading-date">{{ reg.data }}</span> <div class="reading-value">
+                {{ reg.maxima }}/{{ reg.minima }} <span class="unit">mmHg</span>
+              </div>
+              <span class="reading-status">Nível ideal: 12/8 mmHg</span>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngSwitchCase="'glicose'">
+      <ion-grid class="register-grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="add-card" button (click)="abrirModalAdicionar()">
+              <ion-icon name="add-circle" class="add-icon"></ion-icon>
+              <ion-label>Adicionar<br>Registro</ion-label>
+            </ion-card>
+          </ion-col>
+          
+          <ion-col size="6" *ngFor="let reg of registrosGlicose">
+            <ion-card class="reading-card">
+              <span class="reading-label">Glicose</span>
+              <span class="reading-date">{{ reg.data }}</span>
+              <div class="reading-value">
+                {{ reg.valor }} <span class="unit">mg/dL</span>
+              </div>
+              <span class="reading-status">Nível ideal: 70-100</span>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="12" *ngIf="registrosGlicose.length === 0" class="placeholder-text">
+            <p>Nenhum registro de Glicose encontrado.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngSwitchCase="'imc'">
+      <ion-grid class="register-grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="add-card" button (click)="abrirModalAdicionar()">
+              <ion-icon name="add-circle" class="add-icon"></ion-icon>
+              <ion-label>Adicionar<br>Registro</ion-label>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6" *ngFor="let reg of registrosIMC">
+            <ion-card class="reading-card">
+              <span class="reading-label">IMC</span>
+              <span class="reading-date">{{ reg.data }}</span>
+              <div class="reading-value">
+                {{ reg.valor }} <span class="unit">kg/m²</span>
+              </div>
+              <span class="reading-status">Nível ideal: 18.5-24.9</span>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="12" *ngIf="registrosIMC.length === 0" class="placeholder-text">
+            <p>Nenhum registro de IMC encontrado.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+</ion-content>

@@ -16,7 +16,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonImg // Componente para imagens
+  IonImg
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -24,8 +24,6 @@ import {
   templateUrl: './campanhas.page.html',
   styleUrls: ['./campanhas.page.scss'],
   standalone: true,
-  
-  // 2. ADICIONAR TUDO aqui no 'imports'
   imports: [
     BarraDeAbasComponent,
     CabecalhoComponent,

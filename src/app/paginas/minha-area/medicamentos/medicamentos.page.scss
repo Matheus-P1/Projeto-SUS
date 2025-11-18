@@ -6,7 +6,6 @@ ion-title, ion-back-button {
   color: var(--app-color-primary-dark, #003366);
   font-weight: bold;
 }
-
 ion-content {
   --background: var(--app-color-white, #ffffff);
 }
@@ -18,6 +17,9 @@ ion-content {
   align-items: center;
   min-height: 100%; 
   padding: 32px 24px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .main-image {
@@ -25,6 +27,7 @@ ion-content {
   max-width: 50%;
   height: auto;
   margin-bottom: 24px;
+  transition: width 0.3s ease;
 }
 
 .main-title {
@@ -36,33 +39,13 @@ ion-content {
   line-height: 1.3;
 }
 
-/* --- Estado Vazio --- */
-.empty-state {
-  text-align: center;
-  width: 100%;
-}
-
 .description-text {
   font-size: 0.95em;
   color: #555;
   line-height: 1.5;
   margin-bottom: 40px;
   text-align: center;
-}
-
-.add-button {
-  --background: var(--app-color-primary-medium, #9ADAFF);
-  --color: var(--app-color-primary-dark, #003366);
-  --border-radius: 8px;
-  font-weight: bold;
-  height: 50px;
-  text-transform: none;
-  font-size: 1.1em;
-}
-
-/* --- Estado com Lista --- */
-.list-state {
-  width: 100%;
+  max-width: 400px;
 }
 
 .cards-grid {
@@ -73,17 +56,19 @@ ion-content {
   width: 100%;
 }
 
-.alergia-card {
-  background: #f9f9f9; 
+.med-card {
+  background: #f9f9f9;
   border: 1px solid #e0e0e0;
-  border-left: 4px solid var(--app-color-primary-medium, #9ADAFF);
+  border-left: 4px solid var(--app-color-card-border);
   border-radius: 12px;
-  padding: 16px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
 }
 
+/* Ícone Redondo Esquerdo */
 .card-icon-wrapper {
   background: var(--app-color-white, #fff);
   min-width: 40px;
@@ -96,7 +81,7 @@ ion-content {
   border: 1px solid var(--app-color-primary-medium, #9ADAFF);
 
   ion-icon {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--app-color-primary-dark, #003366);
   }
 }
@@ -104,28 +89,81 @@ ion-content {
 .card-content {
   display: flex;
   flex-direction: column;
-  overflow: hidden; 
   flex: 1;
+  overflow: hidden; 
 }
 
-.alergia-nome {
+.med-nome {
   font-weight: bold;
   color: var(--app-color-primary-dark, #003366);
   font-size: 1rem;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.alergia-grupo {
-  font-size: 0.8rem;
-  color: #666;
+.med-tipo {
+  font-size: 0.75rem;
+  color: #888;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.btn-editar {
+/* Botão Adicionar */
+.add-button {
+  --background: var(--app-color-primary-medium, #9ADAFF);
   --color: var(--app-color-primary-dark, #003366);
-  --border-color: var(--app-color-primary-medium, #9ADAFF);
-  --border-width: 2px;
+  --border-radius: 8px;
   font-weight: bold;
+  height: 50px;
   text-transform: none;
+  font-size: 1.1em;
+  width: 100%;
 }
+/*
+@media (min-width: 768px) {
+  .content-container {
+    max-width: 850px;
+    padding-top: 60px;
+  }
+  .main-image {
+    width: 280px;
+    margin-bottom: 32px;
+  }
+  .main-title {
+    font-size: 2.2em;
+    margin-bottom: 32px;
+  }
+  .description-text {
+    font-size: 1.2em;
+    max-width: 600px;
+  }
+  .med-card {
+    padding: 20px 24px;
+    gap: 20px;
+  }
+  .card-icon-wrapper {
+    min-width: 560px;
+    height: 56px;
+
+    ion-icon {
+      font-size: 28px;
+    }
+  }
+  .med-nome {
+    font-size: 1.3em;
+  }
+  .med-tipo {
+    font-size: 0.9em;
+  }
+  .add-button {
+    width: 400px;
+    height: 56px;
+    font-size: 1.2em;
+    margin-top: 16px;
+  }
+  .med-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--app-color-card-border);
+    cursor: pointer;
+  }
+}*/

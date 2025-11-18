@@ -38,6 +38,10 @@
             <span class="alergia-nome">{{ alergia.nome }}</span>
             <span class="alergia-grupo">{{ alergia.categoria }}</span>
           </div>
+
+          <ion-button fill="clear" color="medium" (click)="removerAlergia(alergia)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
         </div>
       </div>
 

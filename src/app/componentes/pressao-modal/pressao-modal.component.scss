@@ -1,0 +1,73 @@
+ion-content {
+  --background: var(--app-color-white);
+}
+
+.modal-container {
+  padding: 24px;
+}
+
+.modal-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: var(--app-color-primary-dark);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Estilo do Formulário */
+.form-group {
+  margin-bottom: 16px;
+
+  ion-label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  ion-input {
+    --background: #f0f0f0;
+    --border-radius: 8px;
+    --padding-start: 12px;
+    --color: var(--app-color-primary-dark);
+    border: 1px solid #ddd;
+  }
+}
+
+/* Estilo do Rodapé */
+ion-footer ion-toolbar {
+  --background: var(--app-color-white);
+  padding: 0 16px 8px 16px;
+  display: flex;
+  gap: 8px;
+
+  .cancel-button {
+    flex: 1; 
+    --color: var(--app-color-primary-dark);
+    --border-radius: 8px;
+    border: 2px solid var(--app-color-card-border);
+    font-weight: bold;
+    height: 44px;
+    text-transform: none;
+  }
+
+  .add-button {
+    flex: 1;
+    --background: #0056b3; 
+    --color: var(--app-color-white);
+    --border-radius: 8px;
+    --box-shadow: none;
+    font-weight: bold;
+    height: 44px;
+    text-transform: none;
+  }
+}

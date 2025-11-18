@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/minha-area"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meus Medicamentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-container">
+    
+    <ion-img src="assets/icon/remedio.png" class="main-image"></ion-img>
+
+    <h2 class="main-title" *ngIf="listaMedicamentos.length === 0">
+      Você ainda não tem registro de medicamentos.
+    </h2>
+    <h2 class="main-title" *ngIf="listaMedicamentos.length > 0">
+      Meus Medicamentos
+    </h2>
+
+    <p class="description-text" *ngIf="listaMedicamentos.length === 0">
+      Ao adicionar os medicamentos que você utiliza, os profissionais de saúde poderão visualizar as informações registradas no seu próximo atendimento.
+    </p>
+
+    <div class="cards-grid" *ngIf="listaMedicamentos.length > 0">
+      
+      <div class="med-card" *ngFor="let med of listaMedicamentos">
+        
+        <div class="card-icon-wrapper">
+           <ion-icon name="medkit"></ion-icon> 
+        </div>
+
+        <div class="card-content">
+          <span class="med-nome">{{ med.nome }}</span>
+          <span class="med-tipo">Medicamento</span>
+        </div>
+
+        <ion-button fill="clear" color="medium" (click)="remover(med.nome)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+      </div>
+    </div>
+
+    <ion-button class="add-button" (click)="abrirModalmedicamentos()" expand="block">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Adicionar Medicamentos
+    </ion-button>
+
+  </div>
+</ion-content>

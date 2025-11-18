@@ -1,0 +1,149 @@
+/* --- Header --- */
+ion-toolbar {
+  --background: var(--app-color-header-bg);
+}
+ion-title {
+  color: var(--app-color-primary-dark);
+  font-weight: bold;
+}
+ion-back-button {
+  color: var(--app-color-primary-dark);
+}
+
+/* --- Content --- */
+ion-content {
+  --background: var(--app-color-white);
+}
+
+.page-subtitle {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--app-color-primary-dark);
+  margin: 20px 16px 16px 16px; 
+  padding-left: 4px; 
+}
+
+/* --- Sub-Abas --- */
+.sub-tabs {
+  --background: transparent;
+  margin: 0 16px 20px 16px;
+
+  ion-segment-button {
+    --background: transparent;
+    --color: #888;
+    --indicator-color: var(--app-color-primary-dark);
+    --border-radius: 0;
+    --border-width: 0;
+    --padding-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .segment-button-checked {
+    --color: var(--app-color-primary-dark);
+    font-weight: bold;
+  }
+}
+
+/* --- Conteúdo do Segmento --- */
+.segment-content {
+  padding: 0 16px;
+  padding-bottom: 20px;
+}
+
+.register-grid {
+  padding: 0;
+}
+.register-grid ion-col {
+  padding: 6px;
+  display: flex;
+}
+
+/* Card "Adicionar Registro" */
+.add-card {
+  --background: var(--app-color-white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border: 1px solid var(--app-color-card-border); 
+  border-radius: 8px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  width: 100%;
+  height: 100%; 
+  margin: 0; 
+  padding: 20px 60px;
+  min-height: 150px; 
+
+  .add-icon {
+    font-size: 60px;
+    color: var(--app-color-primary-dark);
+    margin-bottom: 0px;
+    align-items: left;
+  }
+  
+  ion-label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--app-color-primary-dark);
+    line-height: 1.3;
+  }
+}
+
+/* Card de Leitura */
+.reading-card {
+  --background: var(--app-color-white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border: 1px solid var(--app-color-card-border); 
+  border-radius: 8px;
+  
+  width: 100%;
+  height: 100%;
+  margin: 0; 
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+
+  .reading-label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+  }
+  .reading-date {
+    display: block;
+    font-size: 0.7em;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  
+  .reading-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--app-color-primary-dark);
+    
+    .unit {
+      font-size: 0.6em;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+  }
+
+  .reading-status {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+  }
+}
+
+.placeholder-text {
+  text-align: center;
+  padding-top: 40px;
+  color: #888;
+}

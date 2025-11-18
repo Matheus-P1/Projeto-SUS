@@ -101,4 +101,27 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: 'diario-saude',
+    loadComponent: () => import('./paginas/minha-area/diario-saude/diario-saude.page').then(
+       (m) => m.DiarioSaudePage
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'medicamentos',
+    loadComponent: () => import('./paginas/minha-area/medicamentos/medicamentos.page').then(
+       (m) => m.MedicamentosPage
+      ),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'doador',
+    loadComponent: () => import('./paginas/minha-area/doador/doador.page').then(
+       (m) => m.DoadorPage
+      ),
+    canActivate: [authGuard]
+  },
+
+
 ];

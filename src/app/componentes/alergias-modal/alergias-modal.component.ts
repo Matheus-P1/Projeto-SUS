@@ -2,14 +2,22 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
-  IonContent, IonFooter, IonToolbar, IonButton, IonAccordion, 
-  IonAccordionGroup, IonItem, IonIcon, IonLabel, IonList, IonCheckbox,
+  IonContent, 
+  IonFooter, 
+  IonToolbar, 
+  IonButton, 
+  IonAccordion, 
+  IonAccordionGroup, 
+  IonItem, 
+  IonIcon, 
+  IonLabel, 
+  IonList, 
+  IonCheckbox,
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { nutrition, bug, medkit, flower } from 'ionicons/icons';
 
-// Importa os dados do arquivo local
 import { ALERGIAS_DATA, CategoriaAlergia } from './alergias-data';
 
 @Component({
@@ -18,17 +26,25 @@ import { ALERGIAS_DATA, CategoriaAlergia } from './alergias-data';
   styleUrls: ['./alergias-modal.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, FormsModule, IonContent, IonFooter, IonToolbar, 
-    IonButton, IonAccordion, IonAccordionGroup, IonItem, IonIcon, 
-    IonLabel, IonList, IonCheckbox
+    CommonModule, 
+    FormsModule, 
+    IonContent, 
+    IonFooter, 
+    IonToolbar, 
+    IonButton, 
+    IonAccordion, 
+    IonAccordionGroup,
+    IonItem, 
+    IonIcon, 
+    IonLabel, 
+    IonList, 
+    IonCheckbox
   ]
 })
 export class AlergiasModalComponent implements OnInit {
 
-  // Recebe as alergias já salvas da página principal
   @Input() alergiasPreSelecionadas: any[] = [];
 
-  // Cria uma cópia dos dados para este modal
   categorias: CategoriaAlergia[] = JSON.parse(JSON.stringify(ALERGIAS_DATA));
 
   constructor(private modalCtrl: ModalController) {
@@ -36,7 +52,6 @@ export class AlergiasModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Quando o modal abre, verifica o que já estava salvo
     if (this.alergiasPreSelecionadas && this.alergiasPreSelecionadas.length > 0) {
       this.marcarItensJaSalvos();
     }

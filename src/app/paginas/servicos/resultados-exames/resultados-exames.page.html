@@ -3,48 +3,23 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/servicos"></ion-back-button>
     </ion-buttons>
-    <ion-title>Resultados</ion-title>
-  </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
   <div class="content-padding">
     
-    <h3 class="page-title">RESULTADOS</h3>
+    <h3 class="page-title">RESULTADOS DOS EXAMES</h3>
 
-    <div *ngFor="let doc of doctors">
-      
-      <ion-card class="doctor-card">
-        <ion-card-content>
-          
-          <div class="card-header">
-            <ion-avatar class="doctor-avatar">
-              <ion-icon name="person"></ion-icon>
-            </ion-avatar>
-            <div class="doctor-info">
-              <ion-label class="doctor-name">{{ doc.nome }}</ion-label>
-              <span class="doctor-spec">{{ doc.especialidade }}</span>
-              <span class="doctor-crm">CRM: {{ doc.crm }}</span>
-            </div>
-          </div>
-          
-          <div class="doctor-location">
-            <span class="info-label">LOCAL:</span>
-            <span class="info-value">{{ doc.local }}</span>
-          </div>
+    <div class="empty-state-container">
 
-          <div class="doctor-dates">
-            <span class="info-label">DATAS DISPONÍVEIS:</span>
-            <ion-button class="dates-button" expand="full">
-              {{ doc.datas.join('  -  ') }}
-            </ion-button>
-          </div>
+      <h2 class="main-title">
+        Você ainda não tem registro de exames.
+      </h2>
 
-        </ion-card-content>
-      </ion-card>
-
-      <ion-button class="agendar-button-main" (click)="agendar(doc)" expand="full">
-        Agendar
-      </ion-button>
+      <p class="description-text">
+        Ao realizar um exame, o resultado aparece nesta página em formato PDF, para que você visualize o resultado.
+      </p>
 
     </div> </div> </ion-content>

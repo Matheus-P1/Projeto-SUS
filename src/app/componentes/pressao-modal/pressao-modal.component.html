@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="modal-container">
+    <h2 class="modal-title">Adicionar Registro de Pressão</h2>
+    <p class="modal-subtitle">Adicione seus registros de pressão</p>
+
+    <div class="form-group">
+      <ion-label>Pressão Máxima</ion-label>
+      <ion-input type="number" placeholder="Resultado" [(ngModel)]="pressaoMaxima"></ion-input>
+    </div>
+
+    <div class="form-group">
+      <ion-label>Pressão Mínima</ion-label>
+      <ion-input type="number" placeholder="Resultado" [(ngModel)]="pressaoMinima"></ion-input>
+    </div>
+
+    <div class="form-group">
+      <ion-label>Data</ion-label>
+      <ion-input type="date" placeholder="DD/MM/AAAA" [(ngModel)]="data"></ion-input>
+    </div>
+  </div>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-button fill="clear" class="cancel-button" (click)="cancelar()">
+        Cancelar
+      </ion-button>
+      <ion-button class="add-button" (click)="adicionar()" slot="end">
+        Adicionar
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

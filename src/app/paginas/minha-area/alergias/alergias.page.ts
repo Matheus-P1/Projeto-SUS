@@ -15,7 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
-import { add, nutrition, medkit, alertCircle, bug, flower } from 'ionicons/icons';
+import { add, nutrition, medkit, alertCircle, bug, flower, trashOutline } from 'ionicons/icons';
 import { AlergiasModalComponent } from '../../../componentes/alergias-modal/alergias-modal.component';
 import { AlergiaService } from './alergia.service';
 
@@ -46,7 +46,7 @@ export class AlergiasPage {
     private modalCtrl: ModalController,
     private alergiaService: AlergiaService
   ) {
-    addIcons({ add, nutrition, medkit, alertCircle, bug, flower });
+    addIcons({ add, nutrition, medkit, alertCircle, bug, flower, trashOutline });
   }
 
   ionViewWillEnter() {
@@ -56,7 +56,7 @@ export class AlergiasPage {
   async abrirModalAlergias() {
     const modal = await this.modalCtrl.create({
       component: AlergiasModalComponent,
-      breakpoints: [0, 0.5, 0.85, 1.0],
+      breakpoints: [0, 0.5, 0.65, 1.0],
       initialBreakpoint: 0.5,
       handle: true,
       componentProps: {
@@ -72,6 +72,11 @@ export class AlergiasPage {
     });
 
     await modal.present();
+  }
+
+  removerAlergia(alergiaParaRemover: any) {
+    this.alergiasCadastradas = this.alergiasCadastradas.filter(a => a !== alergiaParaRemover);
+    this.alergiaService.salvarAlergias(this.alergiasCadastradas);
   }
 
   getIconeCategoria(categoria: string): string {
