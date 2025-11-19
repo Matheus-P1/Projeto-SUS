@@ -33,6 +33,7 @@ ion-content {
   border-radius: 8px;
   margin: 0 0 20px 0;
   padding: 8px 0;
+  pointer-events: none;
 
   ion-card-content {
     padding: 0 8px;
@@ -46,6 +47,11 @@ ion-content {
     margin-bottom: 8px;
     display: block;
   }
+}
+
+.search-card ion-label,
+.search-card ion-searchbar {
+  pointer-events: auto;
 }
 
 .custom-searchbar {
@@ -75,7 +81,7 @@ button {
   margin: 0;
 }
 
-ion-searchbar {
+/*ion-searchbar {
   z-index: 999 !important;
   position: relative;
-}
+}*/
