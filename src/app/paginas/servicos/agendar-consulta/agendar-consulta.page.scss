@@ -74,3 +74,8 @@ button {
   height: 48px;
   margin: 0;
 }
+
+ion-searchbar {
+  z-index: 999 !important;
+  position: relative;
+}
