@@ -33,7 +33,7 @@ ion-content {
   border-radius: 8px;
   margin: 0 0 20px 0;
   padding: 8px 0;
-  pointer-events: none;
+  //pointer-events: none;
 
   ion-card-content {
     padding: 0 8px;
@@ -49,10 +49,10 @@ ion-content {
   }
 }
 
-.search-card ion-label,
+/*.search-card ion-label,
 .search-card ion-searchbar {
   pointer-events: auto;
-}
+}*/
 
 .custom-searchbar {
   --background: var(--app-color-primary-medium);
