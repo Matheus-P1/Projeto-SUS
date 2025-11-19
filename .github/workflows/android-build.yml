@@ -5,8 +5,11 @@ on:
     branches:
       - main
       - master
+      - backup-build
       - 'integra*'
       - 'Update*'
+
+  workflow_dispatch:
 
 jobs:
   build:
