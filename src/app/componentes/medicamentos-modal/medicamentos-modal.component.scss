@@ -38,8 +38,8 @@ ion-content {
   ion-checkbox {
     --size: 22px;
     --border-radius: 4px;
-    --checkbox-background-checked: var(--app-color-primary-dark);
-    --border-color-checked: var(--app-color-primary-dark);
+    --checkbox-background-checked: var(--app-color-primary, #3880ff);
+    --border-color-checked: var(--app-color-primary, #3880ff);
   }
 }
 
