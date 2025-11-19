@@ -11,7 +11,6 @@ import {
   IonLabel,
   //IonItem, 
   IonInput, 
-  IonTitle
 } from '@ionic/angular/standalone';
 import { ModalController } from '@ionic/angular/standalone'; 
 
@@ -31,7 +30,6 @@ import { ModalController } from '@ionic/angular/standalone';
     IonLabel, 
     //IonItem, 
     IonInput, 
-    IonTitle
   ]
 })
 export class ImcModalComponent {
