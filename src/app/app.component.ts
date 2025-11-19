@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { StatusBar } from '@capacitor/status-bar';
+import { NavigationBar } from '@hugotomazi/capacitor-navigation-bar';
+import { Platform } from '@ionic/angular';
 
 import {
   logOut,
@@ -45,7 +48,7 @@ import {
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private platform: Platform) {
     document.body.setAttribute('color-theme', 'light');
 
     addIcons({
@@ -82,5 +85,20 @@ export class AppComponent {
       add,
       arrowBackOutline,
     });
+
+    this.initializeApp();
+  }
+
+  async initializeApp() {
+    await this.platform.ready();
+
+    if (this.platform.is('hybrid')) {
+      try {
+        await StatusBar.hide();
+        await NavigationBar.hide();
+      } catch (err) {
+        console.log('erro ao esconder atributos (normal no pc):', err);
+      }
+    }
   }
 }
