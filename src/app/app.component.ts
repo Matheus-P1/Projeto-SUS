@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { StatusBar } from '@capacitor/status-bar';
@@ -93,12 +93,25 @@ export class AppComponent {
     await this.platform.ready();
 
     if (this.platform.is('hybrid')) {
+      this.esconderBarras();
+    }
+  }
+
+  async esconderBarras() {
       try {
         await StatusBar.hide();
         await NavigationBar.hide();
       } catch (err) {
         console.log('erro ao esconder atributos (normal no pc):', err);
       }
+  }
+  
+  @HostListener('window:click')
+  @HostListener('window:touchstart')
+  async onUserInteraction() {
+    if (this.platform.is('hybrid')) {
+      await this.esconderBarras();
     }
   }
+
 }
