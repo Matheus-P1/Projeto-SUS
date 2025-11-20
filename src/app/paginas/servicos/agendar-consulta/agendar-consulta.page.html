@@ -16,17 +16,20 @@
   <div class="content-padding" *ngIf="!isLoading">
     <h3 class="page-title">Busque Pelo profissional e especialidade</h3>
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Especialidade</ion-label>
-      <ion-searchbar
-        placeholder="Buscar"
-        class="custom-searchbar"
-        [(ngModel)]="especialidade"
-        (ionInput)="onFilterChange()"
-      ></ion-searchbar>
-    </ion-item>
+    <ion-card class="search-card">
+      <ion-card-content>
+        <ion-label>Especialidade:</ion-label>
+        <ion-searchbar
+          placeholder="Buscar"
+          class="custom-searchbar"
+          [(ngModel)]="especialidade"
+          (ionInput)="onFilterChange()"
+        ></ion-searchbar>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-item lines="none">
+    <ion-card class="search-card">
+      <ion-card-content>
         <ion-label>Nome do Profissional:</ion-label>
         <ion-searchbar
           placeholder="Buscar"
@@ -34,7 +37,8 @@
           [(ngModel)]="profissional"
           (ionInput)="onFilterChange()"
         ></ion-searchbar>
-    </ion-item>
+      </ion-card-content>
+    </ion-card>
     <div
       *ngIf="medicosParaRenderizar.length === 0"
       style="padding: 16px; text-align: center; color: var(--ion-color-medium)"
