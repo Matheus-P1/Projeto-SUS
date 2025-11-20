@@ -82,3 +82,31 @@ ion-footer ion-toolbar {
   height: 48px;
   margin: 0;
 }
+
+/* Força o fundo do card para branco */
+ion-card {
+  --background: #ffffff;
+  background: #ffffff;
+}
+
+ion-card-content {
+  background: #ffffff;
+}
+
+/* MÁGICA PARA REMOVER O AZUL: Força transparência nos itens */
+app-api-select,
+ion-item,
+.item-native,
+.item-inner {
+  --background: transparent !important;
+  background: transparent !important;
+  --background-hover: transparent !important;
+  --background-focused: transparent !important;
+  --ripple-color: transparent !important;
+}
+
+/* Garante que o texto do label não suma */
+ion-label {
+  z-index: 10; 
+  position: relative;
+}

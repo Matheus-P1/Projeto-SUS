@@ -33,7 +33,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build do Site (Ionic/Angular)
-        run: npm run build
+        run: npm run  -- --base-href ./
 
       - name: Corrigir Permissao do Gradle
         run: chmod +x android/gradlew
