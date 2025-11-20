@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 import { ListaAgendamentosComponent } from 'src/app/componentes/lista-agendamentos/lista-agendamentos.component';
 
@@ -64,7 +65,7 @@ export class HomePage implements OnInit {
 
   servicosReduzidos = this.allServices.slice(0, 3);
 
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {}
 
   ngOnInit() {}
 
@@ -77,23 +78,17 @@ export class HomePage implements OnInit {
   }
 
   onServiceClick(serviceId: string) {
-    let navigationPromise: Promise<boolean> | null = null;
     if (serviceId === 'consulta') {
-      navigationPromise = this.router.navigate(['/agendar-consulta']);
+      this.navCtrl.navigateForward('/agendar-consulta');
     } else if (serviceId === 'exame') {
-      navigationPromise = this.router.navigate(['/agendar-exames']);
+      this.navCtrl.navigateForward('/agendar-exames');
     } else {
-      console.warn('Nenhuma rota definida para o serviceId:', serviceId);
-      return;
-    }
-    if (navigationPromise) {
-      navigationPromise.catch((error) => {
-        console.error('ERRO AO TENTAR NAVEGAR para ' + serviceId + ':', error);
-      });
+      console.warn('Nenhuma rota definida para:', serviceId);
     }
   }
 
+
   verTodosServicos() {
-    this.router.navigate(['/servicos']);
+    this.navCtrl.navigateForward(['/servicos']);
   }
 }
