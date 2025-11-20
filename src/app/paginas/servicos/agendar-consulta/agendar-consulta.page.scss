@@ -29,7 +29,6 @@ ion-content {
 
 .search-card {
   --background: #f0f0f0;
-  background: #f0f0f0;
   box-shadow: none;
   border-radius: 8px;
   margin: 0 0 20px 0;
@@ -50,19 +49,15 @@ ion-content {
 }
 
 .custom-searchbar {
-  /* Correção: Força fundo branco e ignora variáveis quebradas */
-  --background: #ffffff !important;
-  background: #ffffff !important;
-  
+  --background: var(--app-color-primary-medium);
   --box-shadow: none;
   --border-radius: 8px;
   padding: 0;
   margin: 0;
 
-  /* Garante que o texto e ícone sejam cinza escuro visível */
-  --color: #333333;
-  --placeholder-color: #666666;
-  --icon-color: #666666;
+  --color: var(--app-color-primary-dark);
+  --placeholder-color: var(--app-color-primary-dark);
+  --icon-color: var(--app-color-primary-dark);
 }
 
 ion-footer ion-toolbar {
