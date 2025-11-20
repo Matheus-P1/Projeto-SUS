@@ -35,16 +35,3 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 
-ion-input, input, ion-searchbar {
-  color: #000 !important;
-}
-
-ion-input .input, .sc-ion-input-md-h, .sc-ion-input-ios-h {
-  --color: #000 !important;
-  --placeholder-color: #555 !important;
-}
-
-ion-searchbar {
-  --color: #000 !important;
-  --placeholder-color: #555 !important;
-}
