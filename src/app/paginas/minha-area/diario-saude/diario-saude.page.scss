@@ -59,37 +59,38 @@ ion-content {
 }
 
 // Card "Adicionar Registro"
+/* Card "Adicionar Registro" - VERTICAL LIMPO */
 .add-card {
-  --background: var(--app-color-white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  border: 1px solid var(--app-color-card-border); 
+  --background: #ffffff;
+  box-shadow: none;
+  border: 2px solid var(--app-color-card-border); /* Borda da cor do tema */
   border-radius: 8px;
+  opacity: 0.7; /* Um pouco transparente para destacar o card real ao lado */
   
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Um em cima do outro */
   align-items: center;
   justify-content: center;
-  text-align: center;
+  gap: 12px; /* Espaço vertical entre ícone e texto */
   
   width: 100%;
   height: 100%; 
   margin: 0; 
-  padding: 20px 10px; 
+  padding: 10px;
   min-height: 150px;
 
   .add-icon {
-    font-size: 50px;
+    font-size: 35px; /* Ícone bem menor que o original (era 50px) */
     color: var(--app-color-primary-dark);
-    margin-bottom: 8px;
-    align-items: left;
+    margin: 0;
   }
   
   ion-label {
     font-size: 0.9em;
-    font-weight: 500;
+    font-weight: bold;
     color: var(--app-color-primary-dark);
+    text-align: center;
     line-height: 1.2;
-    white-space: normal;
   }
 }
 
