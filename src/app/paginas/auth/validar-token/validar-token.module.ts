@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EsqueciMinhaSenhaPageRoutingModule } from './esqueci-minha-senha-routing.module';
-
-import { EsqueciMinhaSenhaPage } from './esqueci-minha-senha.page';
+import { ValidarTokenPage } from 'src/app/paginas/auth/validar-token/validar-token.page';
+import { ValidarTokenPageRoutingModule } from './validar-token-routing.module';
+import { NgOtpInputModule } from 'ng-otp-input';
 import { CustomInputComponent } from 'src/app/componentes/custom-input/custom-input.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,11 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     IonicModule,
-    EsqueciMinhaSenhaPageRoutingModule,
-    CustomInputComponent,
+    ValidarTokenPageRoutingModule,
     ReactiveFormsModule,
+    NgOtpInputModule,
+    CustomInputComponent,
     HttpClientModule,
   ],
-  declarations: [EsqueciMinhaSenhaPage],
+  declarations: [ValidarTokenPage],
 })
-export class EsqueciMinhaSenhaPageModule {}
+export class ValidarTokenPageModule {}

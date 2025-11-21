@@ -36,6 +36,20 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'validar-token',
+    loadChildren: () =>
+      import('./paginas/auth/validar-token/validar-token.module').then(
+        (m) => m.ValidarTokenPageModule
+      ),
+  },
+  {
+    path: 'redefinir-senha',
+    loadChildren: () =>
+      import('./paginas/auth/redefinir-senha/redefinir-senha.module').then(
+        (m) => m.RedefinirSenhaPageModule
+      ),
+  },
+  {
     path: 'home',
     loadChildren: () =>
       import('./paginas/home/home.module').then((m) => m.HomePageModule),
@@ -111,25 +125,26 @@ export const routes: Routes = [
   },
   {
     path: 'diario-saude',
-    loadComponent: () => import('./paginas/minha-area/diario-saude/diario-saude.page').then(
-       (m) => m.DiarioSaudePage
+    loadComponent: () =>
+      import('./paginas/minha-area/diario-saude/diario-saude.page').then(
+        (m) => m.DiarioSaudePage
       ),
     canActivate: [authGuard],
   },
   {
     path: 'medicamentos',
-    loadComponent: () => import('./paginas/minha-area/medicamentos/medicamentos.page').then(
-       (m) => m.MedicamentosPage
+    loadComponent: () =>
+      import('./paginas/minha-area/medicamentos/medicamentos.page').then(
+        (m) => m.MedicamentosPage
       ),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'doador',
-    loadComponent: () => import('./paginas/minha-area/doador/doador.page').then(
-       (m) => m.DoadorPage
+    loadComponent: () =>
+      import('./paginas/minha-area/doador/doador.page').then(
+        (m) => m.DoadorPage
       ),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
-
-
 ];

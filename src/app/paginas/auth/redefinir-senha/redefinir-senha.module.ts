@@ -4,10 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EsqueciMinhaSenhaPageRoutingModule } from './esqueci-minha-senha-routing.module';
-
-import { EsqueciMinhaSenhaPage } from './esqueci-minha-senha.page';
+import { RedefinirSenhaPage } from './redefinir-senha.page';
 import { CustomInputComponent } from 'src/app/componentes/custom-input/custom-input.component';
+import { RedefinirSenhaPageRoutingModule } from './redefinir-senha-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -15,11 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     IonicModule,
-    EsqueciMinhaSenhaPageRoutingModule,
-    CustomInputComponent,
+    RedefinirSenhaPageRoutingModule,
     ReactiveFormsModule,
+    CustomInputComponent,
     HttpClientModule,
   ],
-  declarations: [EsqueciMinhaSenhaPage],
+  declarations: [RedefinirSenhaPage],
 })
-export class EsqueciMinhaSenhaPageModule {}
+export class RedefinirSenhaPageModule {}
