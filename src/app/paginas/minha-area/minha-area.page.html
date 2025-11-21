@@ -36,11 +36,35 @@
               <span class="info-label">Telefone</span>
               <span class="info-value">{{ userInfo.telefone }}</span>
             </div>
+            
             <div class="info-item">
               <span class="info-label">Sexo</span>
-              <span class="info-value">{{ userInfo.sexo }}</span>
+              
+              <div class="sexo-wrapper">
+                <ng-container *ngIf="userInfo.sexo !== 'Não informado' && userInfo.sexo !== '...'">
+                  <span class="info-value">{{ userInfo.sexo }}</span>
+                  <ion-button 
+                    fill="clear" 
+                    size="small" 
+                    class="btn-editar-icon" 
+                    (click)="alterarSexo()"
+                  >
+                    <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+                  </ion-button>
+                </ng-container>
+
+                <ion-button 
+                  *ngIf="userInfo.sexo === 'Não informado'" 
+                  fill="outline" 
+                  size="small" 
+                  class="btn-adicionar-sexo" 
+                  (click)="alterarSexo()"
+                >
+                  + ADICIONAR
+                </ion-button>
+              </div>
             </div>
-          </ion-col>
+            </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>

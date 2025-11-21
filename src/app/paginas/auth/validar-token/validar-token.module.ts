@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ValidarTokenPage } from 'src/app/paginas/auth/validar-token/validar-token.page';
 import { ValidarTokenPageRoutingModule } from './validar-token-routing.module';
 import { NgOtpInputModule } from 'ng-otp-input';
-import { CustomInputComponent } from 'src/app/componentes/custom-input/custom-input.component';
+import { CustomInputComponent } from '../../../componentes/custom-input/custom-input.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

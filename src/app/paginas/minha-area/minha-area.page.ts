@@ -18,7 +18,17 @@ import {
   IonIcon,
   IonLabel,
   IonItem,
+  AlertController
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { 
+  createOutline,
+  documentAttachOutline,
+  cardOutline,
+  medkitOutline,
+  bugOutline,
+  bookOutline
+} from 'ionicons/icons';
 
 import { BarraDeAbasComponent } from '../../componentes/barra-de-abas/barra-de-abas.component';
 import { API_BASE_URL } from 'src/app/shared/api.url';
@@ -29,7 +39,6 @@ import { CabecalhoComponent } from 'src/app/componentes/cabecalho/cabecalho.comp
   templateUrl: './minha-area.page.html',
   styleUrls: ['./minha-area.page.scss'],
   standalone: true,
-
   imports: [
     CommonModule,
     FormsModule,
@@ -94,7 +103,20 @@ export class MinhaAreaPage implements OnInit {
     },
   ];
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private alertController: AlertController
+  ) {
+    addIcons({ 
+      createOutline,
+      documentAttachOutline,
+      cardOutline,
+      medkitOutline,
+      bugOutline,
+      bookOutline
+    });
+  }
 
   ngOnInit() {
     this.carregarDadosUsuario();
@@ -102,7 +124,6 @@ export class MinhaAreaPage implements OnInit {
 
   carregarDadosUsuario() {
     const token = localStorage.getItem('token');
-
     if (!token) {
       console.error('Usuário não logado! Token não encontrado.');
       this.router.navigate(['/login']);
@@ -110,7 +131,6 @@ export class MinhaAreaPage implements OnInit {
     }
 
     const url = `${API_BASE_URL}/users/profile/me`;
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -129,10 +149,16 @@ export class MinhaAreaPage implements OnInit {
         this.userInfo.cpf = algunsDadosFormatados.cpfFormatado;
         this.userInfo.email = resposta.email;
         this.userInfo.telefone = algunsDadosFormatados.telefoneFormatado;
-        this.userInfo.dataNascimento =
-          algunsDadosFormatados.dataNascimentoFormatado;
+        this.userInfo.dataNascimento = algunsDadosFormatados.dataNascimentoFormatado;
 
-        this.userInfo.sexo = resposta.sexo || 'Não informado';
+        const sexoSalvo = localStorage.getItem('user_sexo_local');
+
+        if (sexoSalvo) {
+          this.userInfo.sexo = sexoSalvo;
+        } else {
+          this.userInfo.sexo = resposta.sexo || 'Não informado';
+        }
+        
         this.userInfo.racaCor = resposta.racaCor || 'Não informada';
       },
       error: (err) => {
@@ -142,43 +168,60 @@ export class MinhaAreaPage implements OnInit {
     });
   }
 
+  async alterarSexo() {
+    const alert = await this.alertController.create({
+      header: 'Selecione o Sexo',
+      inputs: [
+        { label: 'Masculino', type: 'radio', value: 'Masculino', checked: this.userInfo.sexo === 'Masculino' },
+        { label: 'Feminino', type: 'radio', value: 'Feminino', checked: this.userInfo.sexo === 'Feminino' },
+        { label: 'Outro', type: 'radio', value: 'Outro', checked: this.userInfo.sexo === 'Outro' },
+        { label: 'Prefiro não informar', type: 'radio', value: 'Não informado', checked: this.userInfo.sexo === 'Não informado' }
+      ],
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        { 
+          text: 'Salvar', 
+          handler: (valorSelecionado) => {
+            if (valorSelecionado) {
+              this.userInfo.sexo = valorSelecionado;
+              localStorage.setItem('user_sexo_local', valorSelecionado);
+            }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  // --- Formatadores ---
   formatarCpf(cpf: string): string {
     if (!cpf) return '';
-
     const digits = cpf.replace(/\D/g, '');
-
     if (digits.length !== 11) {
       return cpf;
     }
-
     return digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
 
   formatarCns(cns: string): string {
     if (!cns) return '';
-
     const digits = cns.replace(/\D/g, '');
-
     if (digits.length !== 15) {
       return cns;
     }
-
     return digits.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
   }
 
   formatarTelefone(telefone: string): string {
     if (!telefone) return '';
-
     const digits = telefone.replace(/\D/g, '');
-
     if (digits.length === 11) {
       return digits.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     }
-
     if (digits.length === 10) {
       return digits.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
     }
-
     return telefone;
   }
 
