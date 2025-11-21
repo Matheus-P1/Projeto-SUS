@@ -18,7 +18,8 @@ import {
   IonIcon,
   IonLabel,
   IonItem,
-  AlertController
+  AlertController,
+  IonButton
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { 
@@ -55,6 +56,7 @@ import { CabecalhoComponent } from 'src/app/componentes/cabecalho/cabecalho.comp
     IonItem,
     BarraDeAbasComponent,
     CabecalhoComponent,
+    IonButton
   ],
 })
 export class MinhaAreaPage implements OnInit {
