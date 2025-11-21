@@ -34,11 +34,11 @@ jobs:
       - name: Build do Site (Ionic/Angular)
         run: npm run build -- --base-href ./
 
-      - name: Corrigir Permissao do Gradle
-        run: chmod +x android/gradlew
-
       - name: Sincronizar Capacitor
         run: npx cap sync android
+
+      - name: Corrigir Permissao do Gradle
+        run: chmod +x android/gradlew
 
       - name: Gerar APK (Gradle)
         run: cd android && ./gradlew assembleDebug
