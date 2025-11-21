@@ -34,8 +34,19 @@
           
           <ion-col size="6" *ngFor="let reg of registrosPressao">
             <ion-card class="reading-card">
-              <span class="reading-label">Pressão</span>
-              <span class="reading-date">{{ reg.data }}</span> <div class="reading-value">
+              
+              <div class="card-header-row">
+                <span class="reading-label">Pressão</span>
+                <ion-icon 
+                  name="trash-outline" 
+                  color="medium" 
+                  class="delete-icon"
+                  (click)="confirmarExclusao(reg, 'pressao')">
+                </ion-icon>
+              </div>
+
+              <span class="reading-date">{{ reg.data }}</span> 
+              <div class="reading-value">
                 {{ reg.maxima }}/{{ reg.minima }} <span class="unit">mmHg</span>
               </div>
               <span class="reading-status">Nível ideal: 12/8 mmHg</span>
@@ -57,7 +68,17 @@
           
           <ion-col size="6" *ngFor="let reg of registrosGlicose">
             <ion-card class="reading-card">
-              <span class="reading-label">Glicose</span>
+              
+              <div class="card-header-row">
+                <span class="reading-label">Glicose</span>
+                <ion-icon 
+                  name="trash-outline" 
+                  color="medium" 
+                  class="delete-icon"
+                  (click)="confirmarExclusao(reg, 'glicose')">
+                </ion-icon>
+              </div>
+
               <span class="reading-date">{{ reg.data }}</span>
               <div class="reading-value">
                 {{ reg.valor }} <span class="unit">mg/dL</span>
@@ -85,7 +106,17 @@
 
           <ion-col size="6" *ngFor="let reg of registrosIMC">
             <ion-card class="reading-card">
-              <span class="reading-label">IMC</span>
+              
+              <div class="card-header-row">
+                <span class="reading-label">IMC</span>
+                <ion-icon 
+                  name="trash-outline" 
+                  color="medium" 
+                  class="delete-icon"
+                  (click)="confirmarExclusao(reg, 'imc')">
+                </ion-icon>
+              </div>
+
               <span class="reading-date">{{ reg.data }}</span>
               <div class="reading-value">
                 {{ reg.valor }} <span class="unit">kg/m²</span>
