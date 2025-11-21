@@ -58,7 +58,6 @@ ion-content {
   display: flex;
 }
 
-// Card "Adicionar Registro"
 .add-card {
   --background: var(--app-color-white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -81,7 +80,9 @@ ion-content {
     font-size: 50px;
     color: var(--app-color-primary-dark);
     margin-bottom: 8px;
-    align-items: left;
+    align-items: center;
+    display: flex;
+    padding-left: 260px;
   }
   
   ion-label {
