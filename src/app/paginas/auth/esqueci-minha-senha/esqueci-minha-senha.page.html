@@ -3,41 +3,48 @@
     <img src="assets/SUS.png" alt="SUS Logo" />
   </div>
 
-  <!-- Forma branca sobre o fundo azul -->
   <div class="white-shape">
     <div class="login-container">
-      <!-- Título -->
-      <h1 class="login-title">Redefinir<br />senha</h1>
-
-      <!-- Texto informativo -->
-      <p class="info-text">
-        Informe o e-mail para o qual deseja<br />
-        redefinir a sua senha
-      </p>
-
-      <!-- Campo de e-mail -->
-      <div class="input-group">
-        <label for="email">Email:</label>
-        <ion-input
-          id="email"
-          type="email"
-          [(ngModel)]="email"
-          placeholder="Digite seu e-mail"
-        ></ion-input>
+      <div *ngIf="mensagemSucesso" class="mensagem-sucesso">
+        <span>{{ mensagemSucesso }}</span>
+        <button class="ok-button" (click)="fecharMensagem()">OK</button>
       </div>
 
-      <!-- Botão redefinir -->
-      <ion-button
-        expand="block"
-        class="login-button"
-        (click)="redefinirSenha()"
-      >
-        Redefinir
-      </ion-button>
+      <ng-container *ngIf="!mensagemSucesso">
+        <h1 class="login-title">Redefinir<br />senha</h1>
 
-    <!-- Link para voltar -->
-<a routerLink="/login" class="back-link">
-  Voltar
-</a>
+        <p class="info-text">
+          Informe o e-mail para o qual deseja<br />
+          redefinir a sua senha
+        </p>
 
+        <form [formGroup]="esqueciSenhaForm" (ngSubmit)="redefinirSenha()">
+          <app-custom-input
+            label="Email"
+            type="email"
+            placeholder="Digite seu e-mail"
+            iconName="mail-outline"
+            formControlName="email"
+            [errorMessage]="
+                emailControl?.touched
+                  ? (emailControl?.hasError('required') ? 'O campo e-mail é obrigatório.' : emailControl?.hasError('email') ? 'Por favor, insira um e-mail válido.' : null)
+                  : null
+              "
+          ></app-custom-input>
 
+          <ion-button
+            type="submit"
+            expand="block"
+            class="login-button"
+            [disabled]="esqueciSenhaForm.invalid"
+          >
+            <span *ngIf="!isLoading">Redefinir</span>
+            <ion-spinner *ngIf="isLoading"></ion-spinner>
+          </ion-button>
+        </form>
+
+        <a routerLink="/login" class="back-link"> Voltar </a>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

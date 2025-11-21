@@ -1,0 +1,62 @@
+<ion-content class="login-content">
+  <div class="content-card">
+    <div class="custom-header">
+      <ion-button class="custom-back-button" fill="clear" (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <h1 class="page-title">Redefinir<br />senha</h1>
+    </div>
+
+    <div class="form-container">
+      <p class="info-text">Informe a nova senha</p>
+
+      <form [formGroup]="redefinirSenhaForm" (ngSubmit)="redefinirSenha()">
+        <app-custom-input
+          label="Nova senha"
+          formControlName="novaSenha"
+          type="password"
+          placeholder="Mínimo 8 caracteres"
+        ></app-custom-input>
+
+        <app-custom-input
+          label="Confirmar nova senha"
+          formControlName="confirmarNovaSenha"
+          type="password"
+          placeholder="Repita a nova senha"
+          [errorMessage]="redefinirSenhaForm.touched && redefinirSenhaForm.errors?.['senhasNaoConferem'] ? 'As senhas não conferem.' : null"
+        ></app-custom-input>
+
+        <div class="password-feedback-list">
+          <ul>
+            <li
+              *ngFor="let req of passwordRequirements"
+              [class.passed]="req.passed"
+              [class.failed]="!req.passed"
+            >
+              <ion-icon
+                [name]="req.passed ? 'checkmark-circle' : 'close-circle'"
+              ></ion-icon>
+              <span>{{ req.message }}</span>
+            </li>
+            <p
+              *ngIf="novaSenhaControl?.touched && novaSenhaControl?.errors?.['passwordComplex'] && !redefinirSenhaForm.errors?.['senhasNaoConferem']"
+              class="erro-msg"
+            >
+              A senha não atende aos requisitos de segurança.
+            </p>
+          </ul>
+        </div>
+
+        <ion-button
+          type="submit"
+          expand="block"
+          class="confirm-button"
+          [disabled]="redefinirSenhaForm.invalid || isLoading"
+        >
+          <span *ngIf="!isLoading">Redefinir senha</span>
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

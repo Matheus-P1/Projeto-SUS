@@ -24,6 +24,29 @@ export const senhasIguaisValidator: ValidatorFn = (
     : null;
 };
 
+export const passwordComplexValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const senha = control.value || '';
+
+  const isMinLength = senha.length >= 8;
+
+  const hasUppercase = /[A-Z]+/.test(senha);
+
+  const hasNumber = /[0-9]+/.test(senha);
+
+  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(senha);
+
+  const errors: ValidationErrors = {};
+
+  if (!isMinLength) errors['minlength'] = true;
+  if (!hasUppercase) errors['uppercase'] = true;
+  if (!hasNumber) errors['number'] = true;
+  if (!hasSpecialChar) errors['specialChar'] = true;
+
+  return Object.keys(errors).length > 0 ? { passwordComplex: errors } : null;
+};
+
 const maskCns = (value: string): string => {
   if (!value) return value;
   let cleanValue = value.replace(/\D/g, '').substring(0, 15);
@@ -44,23 +67,17 @@ const maskCpf = (value: string): string => {
 const maskTelefone = (value: string): string => {
   if (!value) return value;
   let cleanValue = value.replace(/\D/g, '').substring(0, 11);
-  let maskedValue = '';
 
   if (cleanValue.length > 10) {
-    maskedValue = cleanValue.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    return cleanValue.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
   } else if (cleanValue.length > 6) {
-    maskedValue = cleanValue.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+    return cleanValue.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
   } else if (cleanValue.length > 2) {
-    maskedValue = cleanValue.replace(/^(\d{2})(\d+)$/, '($1) $2');
-  } else if (cleanValue.length > 0) {
-    maskedValue = cleanValue.replace(/^(\d+)$/, '($1');
+    return cleanValue.replace(/^(\d{2})/, '($1) ');
   }
-  return maskedValue.length > 0 ? maskedValue : cleanValue;
+  return cleanValue;
 };
 
-const CNS_PATTERN = /^(\d{3}\s?\d{4}\s?\d{4}\s?\d{4})$/;
-const CPF_PATTERN = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$/;
-const TELEFONE_PATTERN = /^\(\d{2}\)\s?(\d{4,5}-\d{4})$/;
 @Component({
   standalone: false,
   selector: 'app-cadastro',
@@ -71,6 +88,21 @@ export class CadastroPage implements OnInit {
   cadastroForm!: FormGroup;
   isLoading = false;
 
+  passwordRequirements = [
+    { key: 'minlength', message: 'Mínimo 8 caracteres.', passed: false },
+    {
+      key: 'uppercase',
+      message: 'Pelo menos 1 letra maiúscula.',
+      passed: false,
+    },
+    { key: 'number', message: 'Pelo menos 1 número.', passed: false },
+    {
+      key: 'specialChar',
+      message: 'Pelo menos 1 caractere especial (!@#$%^&*).',
+      passed: false,
+    },
+  ];
+
   constructor(
     private location: Location,
     private fb: FormBuilder,
@@ -78,19 +110,39 @@ export class CadastroPage implements OnInit {
     private router: Router,
     private toastController: ToastController
   ) {}
+
   ngOnInit() {
     this.cadastroForm = this.fb.group(
       {
         nome: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         dataDeNascimento: ['', [Validators.required]],
-        cns: ['', [Validators.required, Validators.pattern(CNS_PATTERN)]],
-        cpf: ['', [Validators.required, Validators.pattern(CPF_PATTERN)]],
+
+        cns: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[0-9]{3} [0-9]{4} [0-9]{4} [0-9]{4}$/),
+          ],
+        ],
+
+        cpf: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/),
+          ],
+        ],
+
         telefone: [
           '',
-          [Validators.required, Validators.pattern(TELEFONE_PATTERN)],
+          [
+            Validators.required,
+            Validators.pattern(/^\([0-9]{2}\) [0-9]{4,5}\-[0-9]{4}$/),
+          ],
         ],
-        senha: ['', [Validators.required, Validators.minLength(8)]],
+
+        senha: ['', [Validators.required, passwordComplexValidator]],
         confirmarSenha: ['', [Validators.required]],
       },
       {
@@ -98,51 +150,51 @@ export class CadastroPage implements OnInit {
       }
     );
 
-    this.cns?.valueChanges.subscribe((value) => {
-      const maskedValue = maskCns(value);
-      if (maskedValue !== value) {
-        this.cns?.setValue(maskedValue, { emitEvent: false });
+    this.cadastroForm.get('senha')?.valueChanges.subscribe(() => {
+      this.updatePasswordFeedback();
+    });
+
+    this.cadastroForm.get('cns')?.valueChanges.subscribe((value) => {
+      const masked = maskCns(value);
+      if (value !== masked) {
+        this.cadastroForm.get('cns')?.setValue(masked, { emitEvent: false });
       }
     });
 
-    this.cpf?.valueChanges.subscribe((value) => {
-      const maskedValue = maskCpf(value);
-      if (maskedValue !== value) {
-        this.cpf?.setValue(maskedValue, { emitEvent: false });
+    this.cadastroForm.get('cpf')?.valueChanges.subscribe((value) => {
+      const masked = maskCpf(value);
+      if (value !== masked) {
+        this.cadastroForm.get('cpf')?.setValue(masked, { emitEvent: false });
       }
     });
 
-    this.telefone?.valueChanges.subscribe((value) => {
-      const maskedValue = maskTelefone(value);
-      if (maskedValue !== value) {
-        this.telefone?.setValue(maskedValue, { emitEvent: false });
+    this.cadastroForm.get('telefone')?.valueChanges.subscribe((value) => {
+      const masked = maskTelefone(value);
+      if (value !== masked) {
+        this.cadastroForm
+          .get('telefone')
+          ?.setValue(masked, { emitEvent: false });
       }
     });
   }
 
-  get nome() {
-    return this.cadastroForm.get('nome');
+  updatePasswordFeedback() {
+    const senhaControl = this.cadastroForm.get('senha');
+    const errors = senhaControl?.errors?.['passwordComplex'];
+
+    this.passwordRequirements.forEach((req) => (req.passed = true));
+
+    if (errors) {
+      this.passwordRequirements.forEach((req) => {
+        if (errors[req.key]) {
+          req.passed = false;
+        }
+      });
+    }
   }
-  get email() {
-    return this.cadastroForm.get('email');
-  }
-  get dataDeNascimento() {
-    return this.cadastroForm.get('dataDeNascimento');
-  }
-  get cns() {
-    return this.cadastroForm.get('cns');
-  }
-  get cpf() {
-    return this.cadastroForm.get('cpf');
-  }
-  get telefone() {
-    return this.cadastroForm.get('telefone');
-  }
-  get senha() {
+
+  get senhaControl() {
     return this.cadastroForm.get('senha');
-  }
-  get confirmarSenha() {
-    return this.cadastroForm.get('confirmarSenha');
   }
 
   goBack() {
@@ -150,46 +202,17 @@ export class CadastroPage implements OnInit {
   }
 
   fazerCadastro() {
-    if (this.cadastroForm.invalid) {
-      this.cadastroForm.markAllAsTouched();
+    this.cadastroForm.markAllAsTouched();
 
-      if (this.nome?.invalid) {
-        this.presentarToast('Por favor, insira um nome válido', 'danger');
-        return;
-      }
-      if (this.email?.hasError('email') || this.email?.hasError('required')) {
-        this.presentarToast('Por favor, insira um email válido', 'danger');
-        return;
-      }
-      if (this.dataDeNascimento?.invalid) {
+    if (this.cadastroForm.invalid) {
+      if (this.senhaControl?.errors?.['passwordComplex']) {
         this.presentarToast(
-          'Por favor, insira uma data de nascimento válida',
+          'A senha não cumpre todos os requisitos de segurança.',
           'danger'
         );
         return;
       }
-      if (this.cns?.hasError('pattern')) {
-        this.presentarToast(
-          'Por favor, insira um CNS válido (15 dígitos)',
-          'danger'
-        );
-        return;
-      }
-      if (this.cpf?.hasError('pattern')) {
-        this.presentarToast('Por favor, insira um CPF válido', 'danger');
-        return;
-      }
-      if (this.telefone?.hasError('pattern')) {
-        this.presentarToast('Por favor, insira um telefone válido', 'danger');
-        return;
-      }
-      if (this.senha?.hasError('minlength')) {
-        this.presentarToast(
-          'A senha deve ter no mínimo 8 caracteres',
-          'danger'
-        );
-        return;
-      }
+
       if (this.cadastroForm.errors?.['senhasNaoConferem']) {
         this.presentarToast('As senhas não conferem', 'danger');
         return;
@@ -227,6 +250,17 @@ export class CadastroPage implements OnInit {
     this.http.post(url, corpoDaRequisicao).subscribe({
       next: (response) => {
         this.isLoading = false;
+        this.cadastroForm.setValue({
+          nome: '',
+          email: '',
+          dataDeNascimento: '',
+          cns: '',
+          cpf: '',
+          telefone: '',
+          senha: '',
+          confirmarSenha: '',
+        });
+        this.passwordRequirements.forEach((req) => (req.passed = false));
         this.presentarToast('Cadastro realizado com sucesso!', 'success');
         this.router.navigate(['/login']);
       },

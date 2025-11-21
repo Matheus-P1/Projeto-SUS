@@ -39,8 +39,9 @@
         <app-custom-input
           label="CNS"
           formControlName="cns"
-          type="text"
+          type="tel"
           placeholder="000 0000 0000 0000"
+          [maxlength]="18"
           [errorMessage]="
             cadastroForm.get('cns')?.touched
               ? (cadastroForm.get('cns')?.hasError('required') ? 'CNS é obrigatório.' : cadastroForm.get('cns')?.hasError('pattern') ? 'CNS inválido.' : null)
@@ -51,8 +52,9 @@
         <app-custom-input
           label="CPF"
           formControlName="cpf"
-          type="text"
+          type="tel"
           placeholder="000.000.000-00"
+          [maxlength]="14"
           [errorMessage]="
             cadastroForm.get('cpf')?.touched
               ? (cadastroForm.get('cpf')?.hasError('required') ? 'CPF é obrigatório.' : cadastroForm.get('cpf')?.hasError('pattern') ? 'CPF inválido.' : null)
@@ -65,6 +67,7 @@
           formControlName="telefone"
           type="tel"
           placeholder="(00) 00000-0000"
+          [maxlength]="15"
           [errorMessage]="
             cadastroForm.get('telefone')?.touched
               ? (cadastroForm.get('telefone')?.hasError('required') ? 'Telefone é obrigatório.' : cadastroForm.get('telefone')?.hasError('pattern') ? 'Telefone inválido.' : null)
@@ -79,11 +82,25 @@
           placeholder="Mínimo 8 caracteres"
           [errorMessage]="
             cadastroForm.get('senha')?.touched
-              ? (cadastroForm.get('senha')?.hasError('required') ? 'Senha é obrigatória.' : cadastroForm.get('senha')?.hasError('minlength') ? 'A senha deve ter no mínimo 8 caracteres.' : null)
+              ? (cadastroForm.get('senha')?.hasError('required') ? 'Senha é obrigatória.' : cadastroForm.get('senha')?.hasError('passwordComplex') ? 'A senha não atende aos requisitos.' : null)
               : null
           "
         ></app-custom-input>
 
+        <div class="password-feedback-list">
+          <ul>
+            <li
+              *ngFor="let req of passwordRequirements"
+              [class.passed]="req.passed && senhaControl?.value"
+              [class.failed]="senhaControl?.value && !req.passed"
+            >
+              <ion-icon
+                [name]="req.passed ? 'checkmark-circle' : 'close-circle'"
+              ></ion-icon>
+              <span>{{ req.message }}</span>
+            </li>
+          </ul>
+        </div>
         <app-custom-input
           label="Confirme a senha"
           formControlName="confirmarSenha"

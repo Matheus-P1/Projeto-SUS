@@ -30,6 +30,7 @@ export class CustomInputComponent implements ControlValueAccessor, OnInit {
   @Input() disabled: boolean = false;
   @Input() required: boolean = false;
   @Input() errorMessage: string | null = null;
+  @Input() maxlength: number | null = null;
   @Input() iconName: string | null = null;
 
   public value: any = null;

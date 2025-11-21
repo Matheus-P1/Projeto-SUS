@@ -1,0 +1,48 @@
+<ion-content class="login-content">
+  <div class="content-card">
+    <div class="custom-header">
+      <ion-button class="custom-back-button" fill="clear" (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <h1 class="page-title">Token</h1>
+    </div>
+
+    <div class="token-container">
+      <p class="info-text">
+        Insira o token para seguir com a<br />
+        redefinição da sua senha
+      </p>
+
+      <form [formGroup]="tokenForm" (ngSubmit)="validarToken()">
+        <app-custom-input
+          label="Código de Verificação"
+          type="tel"
+          placeholder="000000"
+          iconName="key-outline"
+          formControlName="token"
+          [maxlength]="6"
+          [errorMessage]="
+                tokenControl?.touched && tokenControl?.invalid 
+                ? (tokenControl?.hasError('required') 
+                    ? 'O token é obrigatório.' 
+                    : (tokenControl?.hasError('pattern') || tokenControl?.hasError('tokenInvalido'))
+                        ? 'O token deve ser numérico e ter 6 dígitos.' 
+                        : null
+                    )
+                : null
+            "
+        ></app-custom-input>
+
+        <ion-button
+          type="submit"
+          expand="block"
+          class="confirm-button"
+          [disabled]="tokenForm.invalid || isLoading"
+        >
+          <span *ngIf="!isLoading">Confirmar</span>
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>
