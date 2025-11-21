@@ -1,0 +1,57 @@
+$blue-focus: #85c9f2;
+$red-error: #d9534f;
+$bg-color: #f2f2f8;
+$label-color: #003366;
+
+.custom-input-wrapper {
+  margin-bottom: 18px;
+  text-align: left;
+
+  label {
+    font-size: 15px;
+    font-weight: 600;
+    color: $label-color;
+    display: block;
+    margin-bottom: 6px;
+  }
+}
+
+.custom-input-item {
+  --background: $bg-color;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --border-width: 0;
+  --padding-end: 16px;
+  border-radius: 8px;
+
+  box-shadow: inset 0 0 0 1px #e0e0e0;
+
+  ion-input {
+    --padding-start: 12px;
+    --padding-end: 0px;
+    height: 48px;
+    font-size: 16px;
+    --color: #000000;
+  }
+}
+
+.custom-input-item.is-focused {
+  box-shadow: 0 0 0 2px $blue-focus;
+}
+
+.custom-input-wrapper.is-error {
+  .custom-input-item {
+    box-shadow: 0 0 0 2px $red-error;
+  }
+
+  .custom-input-item.is-focused {
+    box-shadow: 0 0 0 2px $red-error;
+  }
+}
+
+.error-message {
+  color: $red-error;
+  font-size: 13px;
+  margin-top: 4px;
+  padding-left: 4px;
+}
