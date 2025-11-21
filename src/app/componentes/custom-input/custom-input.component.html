@@ -1,0 +1,38 @@
+<div class="custom-input-wrapper" [class.is-error]="errorMessage">
+  <label [attr.for]="label">{{ label }}:</label>
+
+  <ion-item
+    class="custom-input-item"
+    [class.is-focused]="isFocused"
+    [class.has-error]="errorMessage"
+    [class.is-disabled]="disabled"
+  >
+    <ion-input
+      [id]="label"
+      [type]="inputType"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [value]="value"
+      (ionInput)="onInput($event)"
+      (ionBlur)="onBlur()"
+      (ionFocus)="onFocus()"
+    ></ion-input>
+
+    <ion-icon
+      *ngIf="iconName && !isPasswordType"
+      [name]="iconName"
+      slot="end"
+    ></ion-icon>
+
+    <ion-icon
+      *ngIf="isPasswordType"
+      [name]="passwordToggleIcon"
+      (click)="togglePasswordVisibility()"
+      class="password-toggle-icon"
+      slot="end"
+      aria-label="Mostrar/ocultar senha"
+    ></ion-icon>
+  </ion-item>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CadastroPageRoutingModule } from './cadastro-routing.module';
 
 import { CadastroPage } from './cadastro.page';
+import { CustomInputComponent } from 'src/app/componentes/custom-input/custom-input.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CadastroPage } from './cadastro.page';
     IonicModule,
     CadastroPageRoutingModule,
     ReactiveFormsModule,
+    CustomInputComponent,
     HttpClientModule,
   ],
   declarations: [CadastroPage],

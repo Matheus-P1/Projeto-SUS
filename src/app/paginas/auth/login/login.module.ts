@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomInputComponent } from 'src/app/componentes/custom-input/custom-input.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPageRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CustomInputComponent,
   ],
   declarations: [LoginPage],
 })
