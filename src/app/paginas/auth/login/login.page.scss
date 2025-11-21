@@ -1,12 +1,11 @@
 :host {
   ion-content.login-content {
-    --ion-background-color: #85c9f2; /* fundo azul */
+    --ion-background-color: #85c9f2;
     --background: #85c9f2;
     position: relative;
     height: 100%;
   }
 
-  /* Forma branca arredondada */
   .white-shape {
     position: absolute;
     bottom: 0;
@@ -20,25 +19,22 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 40px; /* distância do topo */
+    padding-top: 40px;
   }
 
-  /* Container principal */
   .login-container {
     width: 85%;
     max-width: 320px;
     text-align: center;
   }
 
-  /* Título Login */
   .login-title {
     font-weight: 800;
     color: #003366;
-    font-size: 45px; /* Aumentado */
+    font-size: 45px;
     margin-bottom: 30px;
   }
 
-  /* Grupos de inputs */
   .input-group {
     text-align: left;
     margin-bottom: 18px;
@@ -54,41 +50,30 @@
 
     ion-input {
       --background: #f2f2f8;
+      --color: #000000;
+      --padding-start: 12px;
+
+      border: 1px solid #e0e0e0;
       border-radius: 8px;
-      padding-left: 12px;
       height: 48px;
       font-size: 16px;
-      --color: #000000; /* texto digitado em preto */
-      color: #000000; /* reforço */
-    }
-
-    ion-input::part(native) {
-      color: #000000 !important; /* garante o preto mesmo em tema escuro */
-      opacity: 1; /* remove transparência */
-    }
-
-    ion-input::placeholder {
-      color: #999999;
-      opacity: 1;
     }
   }
 
   .password-icon {
     position: absolute;
     top: 50%;
-    right: 12px; 
-    transform: translateY(0); 
-  
+    right: 12px;
+    transform: translateY(0);
+
     z-index: 10;
-    font-size: 1.4rem; 
-    color: #888
+    font-size: 1.4rem;
+    color: #888;
   }
 
   .input-group ion-input[formControlName="senha"] {
     --padding-end: 40px !important;
   }
-
-  /* Esqueci minha senha */
   .forgot-password {
     display: block;
     text-align: left;
@@ -98,7 +83,6 @@
     text-decoration: none;
   }
 
-  /* Botão Entrar */
   .login-button {
     --background: #85c9f2;
     --color: #003366;
@@ -109,7 +93,6 @@
     margin-bottom: 25px;
   }
 
-  /* Texto "Não tem conta?" */
   .signup-text {
     font-size: 14px;
     color: #333;
@@ -121,51 +104,24 @@
     }
   }
 
-  /* Login social */
-  .social-login {
-    margin-top: 20px;
-
-    p {
-      font-size: 13px;
-      color: #333;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 8px;
-
-      ion-icon {
-        font-size: 22px;
-        color: #0033cc;
-      }
-    }
-  } 
   .error-message {
-  color: #d9534f; /* vermelho */
-  font-size: 13px;
-  margin-top: 4px;
-  padding-left: 4px;
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: 4px;
+    padding-left: 4px;
+  }
+
+  .input-group ion-input.ng-invalid.ng-touched {
+    border: 2px solid #d9534f !important;
+    border-radius: 8px;
+  }
+
+  .input-group ion-input:focus-within {
+    border: 2px solid #85c9f2 !important;
+    border-radius: 8px;
+  }
+
+  .input-group ion-input.ng-invalid.ng-touched:focus-within {
+    border: 2px solid #d9534f !important;
+  }
 }
-/* Bordas vermelhas quando o input estiver inválido */
-.input-group ion-input.ng-invalid.ng-touched {
-  --border-color: #d9534f !important;
-  border: 2px solid #d9534f !important;
-  border-radius: 8px;
-}
-
-/* Ajuste para o fundo ficar igual mesmo com erro */
-.input-group ion-input.ng-invalid.ng-touched::part(native) {
-  background: #f2f2f8 !important;
-}
-}
-
-
-
-
-
-
-
-
-

@@ -15,9 +15,6 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
 
-  showPassword = false;
-  passwordIcon = 'eye-off-outline';
-
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -26,19 +23,15 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      usuario: ['', [Validators.required]],
-      senha: ['', [Validators.required, Validators.minLength(8)]],
-    });
-  }
-
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-    if (this.showPassword) {
-      this.passwordIcon = 'eye-outline';
-    } else {
-      this.passwordIcon = 'eye-off-outline';
-    }
+    this.loginForm = this.fb.group(
+      {
+        usuario: ['', [Validators.required, Validators.email]],
+        senha: ['', [Validators.required, Validators.minLength(8)]],
+      },
+      {
+        updateOn: 'change',
+      }
+    );
   }
 
   fazerLogin() {
@@ -59,6 +52,11 @@ export class LoginPage implements OnInit {
         localStorage.setItem('token', response.access_token);
 
         localStorage.setItem('userId_logado', response.user_id);
+
+        this.loginForm.setValue({
+          usuario: '',
+          senha: '',
+        });
 
         this.router.navigate(['/home']);
       },

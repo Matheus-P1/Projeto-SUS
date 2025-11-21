@@ -9,142 +9,95 @@
 
     <form [formGroup]="cadastroForm" (ngSubmit)="fazerCadastro()">
       <div class="form-container">
-        
-        <!-- NOME -->
-        <div class="form-field">
-          <ion-label>Nome:</ion-label>
-          <ion-input
-            id="nome"
-            formControlName="nome"
-            type="text"
-            class="custom-input"
-          ></ion-input>
+        <app-custom-input
+          label="Nome"
+          formControlName="nome"
+          type="text"
+          placeholder="Seu nome completo"
+          [errorMessage]="cadastroForm.get('nome')?.touched && cadastroForm.get('nome')?.invalid ? 'Nome é obrigatório.' : null"
+        ></app-custom-input>
 
-          <p *ngIf="cadastroForm.get('nome')?.touched && cadastroForm.get('nome')?.invalid"
-             class="erro-msg">Nome é obrigatório.</p>
-        </div>
-        
-        <!-- EMAIL -->
-        <div class="form-field">
-          <ion-label>Email:</ion-label>
-          <ion-input
-            id="email"
-            formControlName="email"
-            type="email"
-            class="custom-input"
-          ></ion-input>
+        <app-custom-input
+          label="Email"
+          formControlName="email"
+          type="email"
+          placeholder="email@exemplo.com"
+          [errorMessage]="
+            cadastroForm.get('email')?.touched
+              ? (cadastroForm.get('email')?.hasError('required') ? 'Email é obrigatório.' : cadastroForm.get('email')?.hasError('email') ? 'Email inválido.' : null)
+              : null
+          "
+        ></app-custom-input>
 
-          <p *ngIf="cadastroForm.get('email')?.touched && cadastroForm.get('email')?.hasError('required')"
-             class="erro-msg">Email é obrigatório.</p>
+        <app-custom-input
+          label="Data de Nascimento"
+          formControlName="dataDeNascimento"
+          type="date"
+          [errorMessage]="cadastroForm.get('dataDeNascimento')?.touched && cadastroForm.get('dataDeNascimento')?.invalid ? 'Data de nascimento é obrigatória.' : null"
+        ></app-custom-input>
 
-          <p *ngIf="cadastroForm.get('email')?.touched && cadastroForm.get('email')?.hasError('email')"
-             class="erro-msg">Email inválido.</p>
-        </div>
+        <app-custom-input
+          label="CNS"
+          formControlName="cns"
+          type="text"
+          placeholder="000 0000 0000 0000"
+          [errorMessage]="
+            cadastroForm.get('cns')?.touched
+              ? (cadastroForm.get('cns')?.hasError('required') ? 'CNS é obrigatório.' : cadastroForm.get('cns')?.hasError('pattern') ? 'CNS inválido.' : null)
+              : null
+          "
+        ></app-custom-input>
 
-        <!-- DATA DE NASCIMENTO -->
-        <div class="form-field">
-          <ion-label>Data de Nascimento:</ion-label>
-          <ion-input
-            id="dataDeNascimento"
-            formControlName="dataDeNascimento"
-            type="date"
-            class="custom-input"
-          ></ion-input>
+        <app-custom-input
+          label="CPF"
+          formControlName="cpf"
+          type="text"
+          placeholder="000.000.000-00"
+          [errorMessage]="
+            cadastroForm.get('cpf')?.touched
+              ? (cadastroForm.get('cpf')?.hasError('required') ? 'CPF é obrigatório.' : cadastroForm.get('cpf')?.hasError('pattern') ? 'CPF inválido.' : null)
+              : null
+          "
+        ></app-custom-input>
 
-          <p *ngIf="cadastroForm.get('dataDeNascimento')?.touched && cadastroForm.get('dataDeNascimento')?.invalid"
-             class="erro-msg">Data de nascimento é obrigatória.</p>
-        </div>
+        <app-custom-input
+          label="Telefone"
+          formControlName="telefone"
+          type="tel"
+          placeholder="(00) 00000-0000"
+          [errorMessage]="
+            cadastroForm.get('telefone')?.touched
+              ? (cadastroForm.get('telefone')?.hasError('required') ? 'Telefone é obrigatório.' : cadastroForm.get('telefone')?.hasError('pattern') ? 'Telefone inválido.' : null)
+              : null
+          "
+        ></app-custom-input>
 
-        <!-- CNS -->
-        <div class="form-field">
-          <ion-label>CNS:</ion-label>
-          <ion-input
-            id="cns"
-            formControlName="cns"
-            type="text"
-            class="custom-input"
-          ></ion-input>
+        <app-custom-input
+          label="Senha"
+          formControlName="senha"
+          type="password"
+          placeholder="Mínimo 8 caracteres"
+          [errorMessage]="
+            cadastroForm.get('senha')?.touched
+              ? (cadastroForm.get('senha')?.hasError('required') ? 'Senha é obrigatória.' : cadastroForm.get('senha')?.hasError('minlength') ? 'A senha deve ter no mínimo 8 caracteres.' : null)
+              : null
+          "
+        ></app-custom-input>
 
-          <p *ngIf="cadastroForm.get('cns')?.touched && cadastroForm.get('cns')?.invalid"
-             class="erro-msg">CNS é obrigatório.</p>
-        </div>
+        <app-custom-input
+          label="Confirme a senha"
+          formControlName="confirmarSenha"
+          type="password"
+          placeholder="Repita sua senha"
+          [errorMessage]="cadastroForm.get('confirmarSenha')?.touched && cadastroForm.get('confirmarSenha')?.invalid ? 'Confirme sua senha.' : null"
+        ></app-custom-input>
 
-        <!-- CPF -->
-        <div class="form-field">
-          <ion-label>CPF:</ion-label>
-          <ion-input
-            id="cpf"
-            formControlName="cpf"
-            type="text"
-            class="custom-input"
-          ></ion-input>
-
-          <p *ngIf="cadastroForm.get('cpf')?.touched && cadastroForm.get('cpf')?.invalid"
-             class="erro-msg">CPF é obrigatório.</p>
-        </div>
-
-        <!-- TELEFONE -->
-        <div class="form-field">
-          <ion-label>Telefone:</ion-label>
-          <ion-input
-            id="telefone"
-            formControlName="telefone"
-            type="tel"
-            class="custom-input"
-          ></ion-input>
-
-          <p *ngIf="cadastroForm.get('telefone')?.touched && cadastroForm.get('telefone')?.invalid"
-             class="erro-msg">Telefone é obrigatório.</p>
-        </div>
-
-        <!-- SENHA -->
-        <div class="form-field">
-          <ion-label>Senha:</ion-label>
-          <ion-input
-            id="senha"
-            formControlName="senha"
-            [type]="showPassword ? 'text' : 'password'"
-            class="custom-input"
-          ></ion-input>
-
-          <ion-icon
-            class="password-icon"
-            [name]="passwordIcon"
-            (click)="togglePassword()"
-            aria-label="Mostrar/ocultar senha"
-          ></ion-icon>
-
-          <p *ngIf="cadastroForm.get('senha')?.touched && cadastroForm.get('senha')?.hasError('required')"
-             class="erro-msg">Senha é obrigatória.</p>
-
-          <p *ngIf="cadastroForm.get('senha')?.touched && cadastroForm.get('senha')?.hasError('minlength')"
-             class="erro-msg">A senha deve ter no mínimo 8 caracteres.</p>
-        </div>
-        
-        <!-- CONFIRMAR SENHA -->
-        <div class="form-field">
-          <ion-label>Confirme a senha:</ion-label>
-          <ion-input
-            id="confirmarSenha"
-            formControlName="confirmarSenha"
-            [type]="showConfirmPassword ? 'text' : 'password'"
-            class="custom-input"
-          ></ion-input>
-
-          <ion-icon
-            class="password-icon"
-            [name]="confirmPasswordIcon"
-            (click)="toggleConfirmPassword()"
-            aria-label="Mostrar/ocultar senha"
-          ></ion-icon>
-
-          <p *ngIf="cadastroForm.get('confirmarSenha')?.touched && cadastroForm.get('confirmarSenha')?.invalid"
-             class="erro-msg">Confirme sua senha.</p>
-
-          <p *ngIf="cadastroForm.touched && cadastroForm.errors?.['senhasNaoConferem']"
-             class="erro-msg">As senhas não conferem.</p>
-        </div>
-
+        <p
+          *ngIf="cadastroForm.touched && cadastroForm.errors?.['senhasNaoConferem']"
+          class="erro-msg"
+        >
+          As senhas não conferem.
+        </p>
       </div>
 
       <ion-button

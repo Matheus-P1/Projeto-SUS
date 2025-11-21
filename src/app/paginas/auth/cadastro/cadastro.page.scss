@@ -1,5 +1,4 @@
 :host {
-
   ion-content.cadastro-content {
     --background: #85c9f2;
     padding-top: env(safe-area-inset-top);
@@ -11,15 +10,13 @@
     border-top-left-radius: 60px;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 
-     margin-top: 120px;
+    margin-top: 120px;
 
     padding: 25px;
     width: 100%;
 
-    /* Agora o card cresce de acordo com o conteúdo */
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - env(safe-area-inset-top));
   }
 
   .custom-header {
@@ -103,7 +100,7 @@
     margin-top: 4px;
     font-weight: bold;
   }
-  
+
   .form-field ion-input.ng-invalid.ng-touched {
     --border-color: #e63946 !important;
     border: 2px solid #e63946 !important;
@@ -113,7 +110,4 @@
   .form-field ion-input.ng-invalid.ng-touched::part(native) {
     background: #f2f2f8 !important;
   }
-
 }
-
-
